@@ -1,0 +1,117 @@
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column; 
+            justify-content: space-between; 
+            align-items: center;
+            min-height: 100vh; 
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-grow: 1; 
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #004d99;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            height: 50px;
+            width: 50px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 89%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            background-color: #ffffff;
+            padding-right: 50px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .cart-icon {
+            font-size: 24px; 
+            display: flex;
+            position: fixed;
+            bottom: 15%;
+            right: 11%;
+            z-index: 100;
+            color: #000000; 
+        }
+
+        .cart-icon a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .cart-icon a:visited {
+            color: #000000;
+        }
+
+        .cart-icon a:hover {
+            color: #000000;
+        }    
+
+        .copyright {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            width: 100%;
+            margin-top: 20px; 
+        }

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Namma Ration - Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Montserrat, Arial, sans-serif;
+        box-sizing: border-box;
+    }
+
+    .bg {
+        min-height: 100vh;
+        background: linear-gradient(99deg, #57e7df 0%, #1886c4 52%, #085cbf 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 1550px;
+        margin: 60px auto 0 auto;
+        width: 90%;
+        align-items: flex-start;
+    }
+
+    .left-panel {
+        flex: 0 0 720px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-card {
+        background: #1871b7;
+        border-radius: 16px;
+        padding: 78px 48px 54px 48px; 
+        width: 100%;
+        box-shadow: 0 10px 30px rgba(0,0,0,.19);
+        display: flex;
+        flex-direction: column;
+        gap: 32px; 
+        min-height: 450px; 
+    }
+
+    .form-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    label {
+        color: #121212;
+        font-size: 1.5em;
+        width: 240px;
+        font-weight: bold;
+        letter-spacing: 0.2px;
+    }
+
+    input[type="text"] {
+        flex: 1;
+        border: none;
+        border-radius: 16px;
+        padding: 18px 22px;
+        background: #d8d8d8;
+        color: #444;
+        font-size: 1.2em;
+        font-family: inherit;
+        outline: none;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(0,0,0,.03) inset;
+    }
+
+    input[readonly] {
+        color: #838383;
+        font-weight: 400;
+        background: #d3d3d3;
+        cursor: not-allowed;
+    }
+
+    button[type="submit"] {
+        margin: 46px auto 0 auto;
+        padding: 18px 60px;
+        border: none;
+        border-radius: 28px;
+        background: #fff;
+        color: #222;
+        font-size: 1.3em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background .2s;
+        box-shadow: 0 3px 14px rgba(0,0,0,.15);
+    }
+
+    button[type="submit"]:hover {
+        background: #ecf1fb;
+    }
+
+    .right-panel {
+        flex: 1 0 640px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3.5em;
+        margin-left: 35px;
+        margin-top: 8px;
+        position: relative;
+    }
+
+    .govlockup {
+        display: flex;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 36px;
+    }
+
+    .emblem {
+        height: 96px;
+        width: 70px;
+        margin-top: 7px;
+        margin-left: 110px;
+    }
+
+    .gov-hindi {
+        font-size: 2.2em;
+        font-weight: bold;
+        margin-bottom: -4px;
+        margin-left: 4px;
+        letter-spacing: 0.2px;
+    }
+
+    .gov-en {
+        font-size: 2.19em;
+        font-weight: 700;
+        line-height: 1.13;
+        margin-left: 3px;
+        letter-spacing: 0.5px;
+    }
+
+    .gov-en .gov-india {
+        color: #ffaf40;
+        letter-spacing: 2px;
+        background: linear-gradient(90deg, #ff6a00, #ffffff, #15ff00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        background-clip: text;                
+        color: transparent;                   
+    }
+
+    .lang-box {
+        position: relative;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 22px rgba(0,0,0,.13);
+        display: flex;
+        align-items: center;
+        padding: 23px 30px 30px 22px;
+        width: 525px;
+        flex-shrink: 0;
+        flex-direction: row;
+    }
+
+    .lang-icon {
+        width: 52px;
+        height: 52px;
+        background: #eff2fb;
+        border-radius: 9px;
+        margin-right: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+        position: relative;
+    }
+
+    .ai {
+        font-size: 1.7em;
+        font-weight: bold;
+        color: #264994;
+        margin: 7px 0 0 9px;
+    }
+
+    .star {
+        position: absolute;
+        right: 9px;
+        top: 7px;
+        font-size: 1.1em;
+        color: #36475c;
+    }
+
+    .lang-select {
+        flex: 1 0 245px;
+        background: #ececec;
+        border: none;
+        border-radius: 7px;
+        height: 33px;
+        margin: 0 11px;
+        padding: 0 10px;
+        font-size: 1.1em;
+        color: #101820;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23263243' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        background-size: 16px;
+    }
+
+    .lang-label {
+        position: absolute;
+        left: 220px;
+        bottom: 7px;
+        font-size: 1.44em;
+        font-weight: bold;
+        color: #101820;
+        letter-spacing: 0.4px;
+    }
+
+    .tagline {
+        width: 100%;
+        text-align: center;
+        color: #def8fa;
+        font-size: 1.43em;
+        font-family: Montserrat, Arial, sans-serif;
+        font-weight: 400;
+        padding: 26px 0 42px 0;
+    }
+
+    .lang-icon svg {
+        width: 43px;
+        height: 43px;
+        fill: #000000;
+        margin: 5px 5px 0 5px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .copyright {
+        text-align: center;
+        font-size: 20px;
+        color: #ffffff;
+        width: 100%;
+        margin-top: 10px; 
+    }
+    
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 30px;
+    }
+    
+    .logo {
+        height: 320px;
+        width: 320px;
+        opacity: 0.9;
+        margin-top: -75px;
+        margin-right: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg">
+    <div class="container">
+      <div class="left-panel">
+        <form class="form-card">
+          <div class="form-row">
+            <label for="phone">Phone/Adhaar no.:</label>
+            <input type="text" id="phone">
+          </div>
+          <div class="form-row">
+            <label for="otp">OTP:</label>
+            <input type="text" id="otp">
+          </div>
+          <div class="form-row">
+            <label for="bpl">BPL:</label>
+            <input type="text" id="bpl" placeholder="Enter your BPL card number">
+          </div>
+          <button type="submit"><a href="home.html">Register</a></button>
+        </form>
+      </div>
+      <div class="right-panel">
+        <div class="govlockup">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Emblem_of_India_with_transparent_background.png" alt="Emblem" class="emblem">
+          <div>
+            <div class="gov-hindi">भारत सरकार</div>
+            <div class="gov-en">GOVERNMENT<br>OF <span class="gov-india">INDIA</span></div>
+          </div>
+        </div>
+        <div class="lang-box">
+          <div class="lang-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 92.91">
+              <path d="M20.15,83.63,31.63,73.4a2.89,2.89,0,0,1,1.91-.73h27.8a.92.92,0,0,0,.93-.93V65.9H68v5.84a6.71,6.71,0,0,1-6.68,6.68H34.62L19.3,92.07a2.87,2.87,0,0,1-4.9-2V78.42H6.69A6.71,6.71,0,0,1,0,71.74V28.59a6.76,6.76,0,0,1,6.69-6.68H43.35v5.75H6.69a1,1,0,0,0-.94.93V71.74a.91.91,0,0,0,.28.65,1,1,0,0,0,.66.28H17.27a2.88,2.88,0,0,1,2.88,2.88v8.08Zm.21-19.48L29.6,36.24h8.83l9.24,27.91H40.35L38.8,59.07H29.15l-1.51,5.08ZM30.79,53.24h6.37L34,41.81,30.79,53.24ZM76.63,13.35h8.7V11.11a.69.69,0,0,1,.69-.69h4.65a.68.68,0,0,1,.68.69v2.24h9.76a.68.68,0,0,1,.68.69V18.5a.68.68,0,0,1-.68.68H99.56a26.3,26.3,0,0,1-.91,3.88l0,.06a26.07,26.07,0,0,1-1.74,4.15,32.34,32.34,0,0,1-2.14,3.43c-.67,1-1.41,1.9-2.2,2.83a35.78,35.78,0,0,0,3.68,3.83,41.43,41.43,0,0,0,5.09,3.74.68.68,0,0,1,.21.94l-2.39,3.73a.69.69,0,0,1-1,.2,45.88,45.88,0,0,1-5.58-4.08l0,0a41.42,41.42,0,0,1-4-4.1C87.3,38.93,86.15,40,85,41l0,0c-1.36,1.12-2.79,2.2-4.47,3.36a.69.69,0,0,1-1-.17L77,40.53a.69.69,0,0,1,.17-1c1.66-1.14,3-2.19,4.36-3.28,1.16-1,2.28-2,3.49-3.16a44.82,44.82,0,0,1-2.77-4.45A28.84,28.84,0,0,1,80,22.9a.68.68,0,0,1,.47-.84l4.27-1.19a.68.68,0,0,1,.84.47A22.62,22.62,0,0,0,89,28.7L90.27,27a26.33,26.33,0,0,0,1.51-2.47l0,0A19.43,19.43,0,0,0,93,21.62a24,24,0,0,0,.66-2.44h-17a.69.69,0,0,1-.69-.68V14a.69.69,0,0,1,.69-.69Zm27,56.82L88.26,56.51H61.54a6.73,6.73,0,0,1-6.69-6.68V6.69a6.71,6.71,0,0,1,2-4.72l.2-.18A6.67,6.67,0,0,1,61.54,0h54.65a6.69,6.69,0,0,1,4.71,2l.19.2a6.69,6.69,0,0,1,1.79,4.51V49.83a6.73,6.73,0,0,1-6.69,6.68h-7.7V68.13a2.88,2.88,0,0,1-4.91,2ZM91.26,51.49l11.47,10.23V53.64a2.88,2.88,0,0,1,2.88-2.88h10.58a.92.92,0,0,0,.65-.28.91.91,0,0,0,.29-.65V6.69a1,1,0,0,0-.22-.58L116.84,6a1,1,0,0,0-.65-.29H61.54A.94.94,0,0,0,61,6L60.89,6a.92.92,0,0,0-.28.65V49.83a.92.92,0,0,0,.93.93H89.35a2.86,2.86,0,0,1,1.91.73Z"/>
+            </svg>
+          </div>
+          <select class="lang-select">
+            <option value="english">English</option>
+            <option value="hindi">Hindi</option>
+            <option value="bengali">Bengali</option>
+            <option value="telugu">Telugu</option>
+            <option value="marathi">Marathi</option>
+            <option value="tamil">Tamil</option>
+            <option value="urdu">Urdu</option>
+            <option value="gujarati">Gujarati</option>
+            <option value="kannada">Kannada</option>
+            <option value="odia">Odia</option>
+            <option value="punjabi">Punjabi</option>
+            <option value="malayalam">Malayalam</option>
+          </select>
+          <div class="lang-label">Language</div>
+        </div>
+        
+        <div class="logo-container">
+          <img src="logo-transperant.png" alt="Namma Ration Logo" class="logo">
+        </div>
+      </div>
+    </div>
+    <div class="tagline">
+      A simple portal that connects BPL families in Tier-3 cities to nearby government grocery hotspots with clarity and ease.
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 Namma Ration. All rights reserved.
+            <br>An initiative by Government of India.
+        </p>
+    </div>
+  </div>
+</body>
+</html>
