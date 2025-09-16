@@ -4,136 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="logo.jpg"/>
+    <link rel="icon" type="image/png" href="images/logo.jpg"/>
     <link rel="stylesheet" href="stylesheets/global.css">
     <title>Namma Ration - Cart</title>
-    <style>
-        .cart-layout {
-            display: flex;
-            width: 100%;
-            gap: 20px; 
-            align-items: flex-start;
-        }
-
-        .cart-items-section {
-            flex: 2; 
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            min-height: 400px; 
-        }
-        
-        .cart-header {
-            padding: 15px 25px;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        
-        .price-details-section {
-            flex: 1; 
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            position: sticky; 
-            top: 20px;
-            min-height: 200px;
-        }
-
-        .price-header {
-            padding: 15px 25px;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 16px;
-            font-weight: bold;
-            color: #555;
-            text-transform: uppercase;
-        }
-
-        .empty-cart-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .empty-cart-container img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
-
-        .empty-cart-container h2 {
-            font-size: 20px;
-            font-weight: 500;
-            margin: 0 0 10px 0;
-        }
-
-        .empty-cart-container p {
-            color: #878787;
-            margin: 0 0 20px 0;
-        }
-
-        .shop-now-btn {
-            background-color: #004d99; 
-            color: #fff;
-            border: none;
-            padding: 12px 50px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
-    </style>
 </head>
 <body>
-    
-    <div class="container">
-        
-        <div class="header">
-            <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Emblem_of_India_with_transparent_background.png" alt="Government of India" />
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search" />
-                <div class="search-icon">
-                    <i class="fas fa-search"></i>
-                </div>
+    <div class="header">
+        <div class="search-bar">
+            <input type="text" placeholder="Search" />
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
             </div>
         </div>
-
-        <main class="cart-layout">
-
-            <div class="cart-items-section">
-                <div class="cart-header">My Cart</div>
-                <div class="empty-cart-container">
-                    <img src="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=" alt="Rice" style="width:80px; height:80px; border-radius:8px; margin-right: 670px; margin-top: -30px;">
-                    <h2 style="margin-top: -70px; margin-right: 350px; font-weight: bold;">Arborio Rice - 1 Kg</h2>
-                </div>
-            </div>
-            
-            <aside class="price-details-section">
-                <div class="price-header">Price Summary</div>
-                <h4 style="text-align: center;">Price:- ₹64.50</h4>
-                <h4 style="text-align: center; margin-top: 20px; font-weight: bold;">Tax:- ₹5.50</h4>
-                <h4 style="text-align: center; margin-top: 20px;">Delivery Charges:- Free</h4>
-                <hr style="margin-top: 20px; color: #888;">
-                <h3 style="text-align: center; margin-top: 20px; font-weight: bold;">Total Amount:- ₹70.00</h3>
-                <hr style="margin-top: 20px; color: #888;">
-                <button class="shop-now-btn" style="display: block; margin: 20px auto 20px auto;"><a href="location.html">Checkout</a></button>
-            </aside>
-
-        </main>
     </div>
 
+    <main class="cart-layout">
+        <div class="cart-items-section">
+            <div class="cart-header">My Cart</div>
+            <div class="cart-item-container">
+                <img src="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=" alt="Rice">
+                <h2>Arborio Rice - 1 Kg</h2>
+            </div>
+        </div>
+        
+        <aside class="price-details-section">
+            <div class="price-header">Price Summary</div>
+            <h4 style="text-align: center;">Price:- ₹64.50</h4>
+            <h4 style="text-align: center; margin-top: 20px; font-weight: bold;">Tax:- ₹5.50</h4>
+            <h4 style="text-align: center; margin-top: 20px;">Delivery Charges:- Free</h4>
+            <hr style="margin-top: 20px; color: #888;">
+            <h3 style="text-align: center; margin-top: 20px; font-weight: bold;">Total Amount:- ₹70.00</h3>
+            <hr style="margin-top: 20px; color: #888;">
+            <button class="shop-now-btn" style="display: block; margin: 20px auto 20px auto;"><a href="location.html">Checkout</a></button>
+        </aside>
+
+    </main>
+
     <div class="copyright">
-        <p>&copy; 2025 Namma Ration. All rights reserved.
-            <br>An initiative by Government of India.
-        </p>
+        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
     </div>
 </body>
 </html>

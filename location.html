@@ -3,119 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="logo.jpg"/>
-    <link rel="stylesheet" href="stylesheets/global.css">
+    <link rel="icon" type="image/png" href="images/logo.jpg"/>
+    <link rel="stylesheet" href="stylesheets/main.css">
     <title>Namma Ration - Location</title>
-    <style>
-        .title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: bold;
-            margin-top: 60px;
-            margin-bottom: 40px;
-        }
-        .form-box {
-            background: #1569c7;
-            border-radius: 24px;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 50px 40px 40px 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        .form-group {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-        .form-group label {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #111;
-            flex: 1;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            flex: 2;
-            font-size: 1.3rem;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        .phone-group {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-        .phone-label {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #111;
-            flex: 1;
-        }
-        .phone-input {
-            flex: 2;
-            font-size: 1.3rem;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
-        button {
-            display: block;
-            text-align: center;
-        }
-
-    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Emblem_of_India_with_transparent_background.png" alt="Government of India" />
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search" />
-                <div class="search-icon">
-                    <i class="fas fa-search"></i>
-                </div>
+    <div class="header">
+        <div class="search-bar">
+            <input type="text" placeholder="Search" />
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
             </div>
         </div>
-        <div class="title">Location Details:</div>
-        <form class="form-box">
-            <div class="form-group">
-                <label for="pincode">PIN Code:-</label>
-                <input type="number" id="pincode" name="pincode" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Address:-</label>
-                <textarea id="address" name="address" required></textarea>
-            </div>
-            <div class="phone-group">
-                <label for="phone" class="phone-label">Receiver's Phone no.:-</label>
-                <input class="phone-input" type="number" id="phone" name="phone" required>
-            </div>
-        </form>
-            <button class="shop-now-btn" style="background-color: #004d99; color: white; border: none; padding: 12px 50px; font-size: 16px; font-weight: 500; cursor: pointer; border-radius: 5px; margin: 35px auto 20px auto;"><a href="payment.html">Next</a></button>
     </div>
+    <div class="title">Location Details:</div>
+    <form class="form-box">
+        <div class="form-group">
+            <label for="pincode">PIN Code:-</label>
+            <input type="number" id="pincode" name="pincode" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:-</label>
+            <textarea id="address" name="address" required></textarea>
+        </div>
+        <div class="phone-group">
+            <label for="phone" class="phone-label">Receiver's Phone no.:-</label>
+            <input class="phone-input" type="number" id="phone" name="phone" required>
+        </div>
+    </form>
+    <button class="shop-now-btn" style="background-color: #004d99; color: white; border: none; padding: 12px 50px; font-size: 16px; font-weight: 500; cursor: pointer; border-radius: 5px; margin: 35px auto 20px auto;"><a href="payment.html">Next</a></button>
 
     <div class="copyright">
-        <p>&copy; 2025 Namma Ration. All rights reserved.
-            <br>An initiative by Government of India.
-        </p>
+        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
     </div>
 </body>
 </html>
