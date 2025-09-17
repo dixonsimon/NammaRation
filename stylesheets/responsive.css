@@ -82,6 +82,16 @@
     .logo h1 {
         font-size: 1.2rem;
     }
+
+    .cart-summary {
+        flex: 1;
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        align-self: flex-start;
+        width: 19.5rem;
+    }
     
     .nav-links a {
         font-size: 0.9rem;
