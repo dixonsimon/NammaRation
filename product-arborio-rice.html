@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/logo.jpg"/>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
+    <title>Namma Ration - Arborio Rice</title>
+    <style>
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .product-image-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .product-main-image {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .product-thumbnails {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .product-thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .product-thumbnail:hover, .product-thumbnail.active {
+            border-color: var(--secondary);
+        }
+        
+        .product-info-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .product-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .product-category {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stars {
+            color: #ffc107;
+            margin-right: 0.5rem;
+        }
+        
+        .rating-count {
+            color: var(--text-light);
+        }
+        
+        .product-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .product-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quantity-label {
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background: #e9ecef;
+        }
+        
+        .quantity-value {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .add-to-cart-btn {
+            flex: 2;
+            padding: 0.8rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .add-to-cart-btn:hover {
+            background: var(--primary);
+        }
+        
+        .wishlist-btn {
+            width: 50px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .wishlist-btn:hover {
+            background: #e9ecef;
+            color: var(--accent);
+        }
+        
+        .product-details-tabs {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 2px solid var(--secondary);
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specs-table tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .specs-table td {
+            padding: 0.8rem 0;
+        }
+        
+        .specs-table td:first-child {
+            font-weight: 500;
+            color: var(--text-light);
+            width: 30%;
+        }
+        
+        .review {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+        
+        .review:last-child {
+            border-bottom: none;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .reviewer-name {
+            font-weight: 500;
+        }
+        
+        .review-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .related-products {
+            margin-top: 3rem;
+        }
+        
+        .related-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo-transperant.png" alt="Namma Ration Logo">
+                <h1>Namma Ration</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products, categories, or offers...">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="product-detail-container">
+            <div class="product-image-container">
+                <img src="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=" alt="Arborio Rice" class="product-main-image" id="main-image">
+                
+                <div class="product-thumbnails">
+                    <img src="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=" alt="Rice thumbnail 1" class="product-thumbnail active" data-image="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=">
+                </div>
+            </div>
+            
+            <div class="product-info-container">
+                <h1 class="product-title">Arborio Rice</h1>
+                <span class="product-category">Rice Category</span>
+                
+                <div class="product-price">₹65 / kg</div>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-count">(128 reviews)</span>
+                </div>
+                
+                <div class="product-description">
+                    <p>Arborio rice is an Italian short-grain rice. It is named after the town of Arborio in the Po Valley, where it is grown. When cooked, the rounded grains are firm, creamy, and chewy, due to its higher amylopectin starch content.</p>
+                    <p>This rice is perfect for making risotto due to its high starch content which creates a creamy texture when cooked slowly.</p>
+                </div>
+                
+                <div class="product-quantity">
+                    <span class="quantity-label">Quantity:</span>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" id="decrease-qty">-</button>
+                        <input type="text" class="quantity-value" id="quantity" value="1" readonly>
+                        <button class="quantity-btn" id="increase-qty">+</button>
+                    </div>
+                    <span style="margin-left: 1rem;">(Max 10kg per order)</span>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="add-to-cart-btn" id="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="wishlist-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-details-tabs">
+            <div class="tabs">
+                <div class="tab active" data-tab="description">Description</div>
+                <div class="tab" data-tab="specifications">Specifications</div>
+                <div class="tab" data-tab="reviews">Reviews (128)</div>
+            </div>
+            
+            <div class="tab-content active" id="description-content">
+                <h3>About Arborio Rice</h3>
+                <p>Arborio rice is a short-grain rice named after the town of Arborio in the Po Valley of Italy. It is a staple in Italian cuisine, particularly for making risotto due to its high starch content and creamy texture when cooked.</p>
+                
+                <h4>Key Features:</h4>
+                <ul style="margin-left: 18px;">
+                    <li>High starch content creates creamy texture</li>
+                    <li>Maintains firmness at the center while cooking</li>
+                    <li>Perfect for risotto, rice pudding, and paella</li>
+                    <li>Absorbs flavors well while cooking</li>
+                </ul>
+                
+                <h4>Storage Instructions:</h4>
+                <p>Store in a cool, dry place in an airtight container to maintain freshness. Use within 6 months for best quality.</p>
+            </div>
+            
+            <div class="tab-content" id="specifications-content">
+                <table class="specs-table">
+                    <tr>
+                        <td>Type</td>
+                        <td>Short-Grain Rice</td>
+                    </tr>
+                    <tr>
+                        <td>Origin</td>
+                        <td>Italy</td>
+                    </tr>
+                    <tr>
+                        <td>Shelf Life</td>
+                        <td>12 months</td>
+                    </tr>
+                    <tr>
+                        <td>Best Before</td>
+                        <td>6 months from packaging date</td>
+                    </tr>
+                    <tr>
+                        <td>Cooking Time</td>
+                        <td>18-20 minutes</td>
+                    </tr>
+                    <tr>
+                        <td>Water Ratio</td>
+                        <td>1:2 (rice:water)</td>
+                    </tr>
+                    <tr>
+                        <td>Nutrition (per 100g)</td>
+                        <td>Calories: 130, Carbs: 28g, Protein: 2.7g, Fat: 0.3g</td>
+                    </tr>
+                    <tr>
+                        <td>Certification</td>
+                        <td>FSSAI Approved</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="reviews-content">
+                <div class="review">
+                    <div class="review-header">
+                        <span class="reviewer-name">Rajesh Mehta</span>
+                        <span class="review-date">15 Aug 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Excellent quality rice. Made perfect risotto with it. The grains are plump and absorb flavors well.</p>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <span class="reviewer-name">Priya Singh</span>
+                        <span class="review-date">10 Aug 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>Good quality rice, but a bit expensive compared to local brands. However, the taste is authentic.</p>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <span class="reviewer-name">Vikram Patel</span>
+                        <span class="review-date">05 Aug 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>Authentic Italian rice. Perfect for making creamy risotto. Will definitely buy again.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Thumbnail image switching
+            const thumbnails = document.querySelectorAll('.product-thumbnail');
+            const mainImage = document.getElementById('main-image');
+            
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    // Update main image
+                    mainImage.src = this.getAttribute('data-image');
+                    
+                    // Update active thumbnail
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Quantity controls
+            const quantityInput = document.getElementById('quantity');
+            const decreaseBtn = document.getElementById('decrease-qty');
+            const increaseBtn = document.getElementById('increase-qty');
+            
+            decreaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                }
+            });
+            
+            increaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value < 10) { // Max 10kg
+                    quantityInput.value = value + 1;
+                }
+            });
+            
+            // Add to cart functionality
+            const addToCartBtn = document.getElementById('add-to-cart');
+            addToCartBtn.addEventListener('click', function() {
+                const quantity = parseInt(quantityInput.value);
+                const product = {
+                    id: 1,
+                    name: "Arborio Rice",
+                    price: 65,
+                    image: "https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=",
+                    quantity: quantity
+                };
+                
+                // Add to cart
+                addToCart(product.id, product.name, product.price, product.image, product.quantity);
+                
+                // Show success message
+                showNotification(`${quantity} kg of ${product.name} added to cart`, 'success');
+            });
+            
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show relevant content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === `${tabId}-content`) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Cart functionality (from script.js)
+            function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
+                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    cart.push({
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                        image: productImage,
+                        quantity: quantity
+                    });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+            }
+            
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                const cartCount = document.getElementById('cart-count');
+                
+                if (cartCount) {
+                    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                    cartCount.textContent = totalItems;
+                    
+                    if (totalItems > 0) {
+                        cartCount.style.display = 'flex';
+                    } else {
+                        cartCount.style.display = 'none';
+                    }
+                }
+            }
+            
+            function showNotification(message, type = 'success') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.textContent = message;
+                
+                // Add styles if not already added
+                if (!document.querySelector('#notification-styles')) {
+                    const styles = document.createElement('style');
+                    styles.id = 'notification-styles';
+                    styles.textContent = `
+                        .notification {
+                            position: fixed;
+                            top: 20px;
+                            right: 20px;
+                            padding: 15px 20px;
+                            border-radius: 5px;
+                            color: white;
+                            z-index: 1000;
+                            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                            animation: slideIn 0.3s ease;
+                        }
+                        .notification-success { background-color: #28a745; }
+                        .notification-error { background-color: #dc3545; }
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                        @keyframes slideOut {
+                            from { transform: translateX(0); opacity: 1; }
+                            to { transform: translateX(100%); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(styles);
+                }
+                
+                document.body.appendChild(notification);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+            
+            // Initialize cart count
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
