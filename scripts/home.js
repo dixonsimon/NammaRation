@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 2,
             name: "Basmati Rice",
             price: 85,
-            image: "https://5.imimg.com/data5/SELLER/Default/2023/4/298370833/YQ/IA/YO/105659165/basmati-rice-500x500.jpg",
+            image: "https://tse1.mm.bing.net/th/id/OIP.jq7GRp6cLYbHxk9TY7KzqQHaF7?rs=1&pid=ImgDetMain&o=7&rm=3",
             category: "rice"
         },
         {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 4,
             name: "Toor Dal",
             price: 110,
-            image: "https://www.bigbasket.com/media/uploads/p/l/40101657_2-fresho-toor-dal.jpg",
+            image: "https://tse3.mm.bing.net/th/id/OIP.VUILLm1dh2QfP4uV_SrasAHaHZ?rs=1&pid=ImgDetMain&o=7&rm=3",
             category: "dal"
         },
         {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 6,
             name: "Mustard Oil",
             price: 160,
-            image: "https://www.jiomart.com/images/product/original/490000209/mustard-oil-pouch-1-l-product-images-o490000209-p490000209-0-202203150402.jpg",
+            image: "https://img.freepik.com/premium-photo/mustard-oil-with-flower-white-background_525574-3245.jpg?w=2000",
             category: "oil"
         },
         {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 8,
             name: "Detergent Soap",
             price: 30,
-            image: "https://m.media-amazon.com/images/I/71y+URC1NGL._AC_UF350,350_QL80_.jpg",
+            image: "https://tse4.mm.bing.net/th/id/OIP.eKqg9wIdSkRcGedOcPAutgHaHI?w=720&h=693&rs=1&pid=ImgDetMain&o=7&rm=3",
             category: "soap"
         },
         {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 10,
             name: "Sugar",
             price: 45,
-            image: "https://5.imimg.com/data5/SELLER/Default/2021/6/DU/VT/RL/10201157/sugar-500x500.jpg",
+            image: "https://img.freepik.com/free-photo/world-diabetes-day-sugar-wooden-bowl-dark-surface_1150-26666.jpg",
             category: "sugar"
         }
     ];

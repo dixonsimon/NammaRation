@@ -10,13 +10,33 @@
     <title>Namma Ration - Login</title>
     <style>
         /* Login-specific styles */
+        body {
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
         .login-container {
             min-height: 100vh;
+            min-width: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
             padding: 1rem;
+        }
+
+        .btn  {
+            background-color: #4187ff;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 400px;
+            margin-left: 30px;
         }
         
         .login-card {
@@ -31,7 +51,7 @@
         
         .login-form {
             flex: 1;
-            padding: 3rem;
+            padding: 4rem;
         }
         
         .login-banner {
