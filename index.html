@@ -5,106 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
-    <link rel="stylesheet" href="stylesheets/global.css">
-    <link rel="stylesheet" href="stylesheets/pages.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
     <title>Namma Ration - Login</title>
-</head>
-<body class="bg">
-    <div class="logo-container">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3t6PpUyV6yQJfQk8X1vHp8F7F5f9n3Q3Q2g&s" alt="Namma Ration Logo" class="logo">
-    </div>
-    
-    <h1 class="tagline">Your Digital Ration Solution</h1>
-    
-    <div class="main-container">
-        <div class="left-panel">
-            <div class="form-card">
-                <form id="login-form">
-                    <div class="form-row">
-                        <label for="ration-card">Ration Card No:</label>
-                        <input type="text" id="ration-card" name="ration-card" required />
-                    </div>
-                    <div class="form-row">
-                        <label for="phone">Phone Number:</label>
-                        <input type="text" id="phone" name="phone" required />
-                    </div>
-                    <button type="submit">LOGIN</button>
-                </form>
-            </div>
-        </div>
-        
-        <div class="right-panel">
-            <div class="info-card">
-                <h2>Welcome to Namma Ration</h2>
-                <p>Access your ration supplies with ease and convenience. Our digital platform makes it simple to order and manage your monthly ration requirements.</p>
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-truck"></i>
-                        <span>Free Home Delivery</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Quality Assured Products</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-rupee-sign"></i>
-                        <span>Subsidized Prices</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="copyright" style="color: white;">
-        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
-    </div>
-
     <style>
-        .info-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 16px;
-            padding: 30px;
+        /* Login-specific styles */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            padding: 1rem;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,.19);
+            max-width: 1000px;
+            display: flex;
+            overflow: hidden;
         }
         
-        .info-card h2 {
-            color: #1871b7;
-            margin-bottom: 20px;
+        .login-form {
+            flex: 1;
+            padding: 3rem;
+        }
+        
+        .login-banner {
+            flex: 1;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .login-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
             text-align: center;
         }
         
-        .info-card p {
-            color: #444;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            text-align: center;
+        .form-row {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-row input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-row input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .banner-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         .features {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            list-style: none;
         }
         
-        .feature {
+        .features li {
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 0.8rem;
         }
         
-        .feature i {
-            font-size: 20px;
-            color: #1871b7;
-            width: 30px;
+        .features i {
+            font-size: 1.2rem;
         }
         
-        .feature span {
-            color: #333;
-            font-weight: 500;
+        @media (max-width: 768px) {
+            .login-card {
+                flex-direction: column;
+            }
+            
+            .login-form, .login-banner {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-form">
+                <h2 class="login-title">Login to Namma Ration</h2>
+                <form id="login-form">
+                    <div class="form-row">
+                        <label for="ration-card"><i class="fas fa-address-card"></i> Ration Card Number</label>
+                        <input type="text" id="ration-card" placeholder="Enter your ration card number" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="login-banner">
+                <h2 class="banner-title">Welcome to Namma Ration</h2>
+                <p>Your digital solution for ration supplies</p>
+                <ul class="features">
+                    <li><i class="fas fa-truck"></i> Free Home Delivery</li>
+                    <li><i class="fas fa-check-circle"></i> Quality Assured Products</li>
+                    <li><i class="fas fa-rupee-sign"></i> Subsidized Prices</li>
+                    <li><i class="fas fa-clock"></i> Easy and Convenient</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.getElementById('login-form').addEventListener('submit', function(e) {
