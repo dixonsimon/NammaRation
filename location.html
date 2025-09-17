@@ -5,38 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
-    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/global.css">
+    <link rel="stylesheet" href="stylesheets/pages.css">
     <title>Namma Ration - Location</title>
 </head>
 <body>
-    <div class="header">
-        <div class="search-bar">
-            <input type="text" placeholder="Search" />
-            <div class="search-icon">
-                <i class="fas fa-search"></i>
+    <div class="container">
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="Search" />
+                <div class="search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="title">Location Details:</div>
-    <form class="form-box">
-        <div class="form-group">
-            <label for="pincode">PIN Code:-</label>
-            <input type="number" id="pincode" name="pincode" required>
+        
+        <div class="card">
+            <h2 class="title">Location Details</h2>
+            <form class="location-form" id="location-form">
+                <div class="form-group">
+                    <label for="pincode">PIN Code</label>
+                    <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Enter your PIN code" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" class="form-control" placeholder="Enter your complete address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Receiver's Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter receiver's phone number" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Save & Continue</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="address">Address:-</label>
-            <textarea id="address" name="address" required></textarea>
-        </div>
-        <div class="phone-group">
-            <label for="phone" class="phone-label">Receiver's Phone no.:-</label>
-            <input class="phone-input" type="number" id="phone" name="phone" required>
-        </div>
-    </form>
-    <button class="shop-now-btn" style="background-color: #004d99; color: white; border: none; padding: 12px 50px; font-size: 16px; font-weight: 500; cursor: pointer; border-radius: 5px; margin: 35px auto 20px auto;"><a href="payment.html">Next</a></button>
 
-    <div class="copyright">
-        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+        <div class="copyright">
+            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+        </div>
     </div>
-    <script src="scripts/global.js"></script>
+
+    <script>
+        document.getElementById('location-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const pincode = document.getElementById('pincode').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (pincode.length !== 6 || isNaN(pincode)) {
+                alert('Please enter a valid 6-digit PIN code');
+                return;
+            }
+            
+            if (phone.length !== 10 || isNaN(phone)) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('deliveryAddress', JSON.stringify({
+                pincode,
+                address,
+                phone
+            }));
+            
+            // Redirect to payment page
+            window.location.href = 'payment.html';
+        });
+    </script>
 </body>
 </html>

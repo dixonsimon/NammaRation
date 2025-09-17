@@ -6,37 +6,156 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
     <link rel="stylesheet" href="stylesheets/global.css">
+    <link rel="stylesheet" href="stylesheets/pages.css">
     <title>Namma Ration - Cart</title>
 </head>
 <body>
-    <div class="header">
-        <div class="search-bar">
-            <input type="text" placeholder="Search" />
-            <div class="search-icon">
-                <i class="fas fa-search"></i>
-            </div>
-        </div>
-    </div>
-
-    <main class="cart-layout">
-        <div class="cart-items-section">
-            <div class="cart-header">My Cart</div>
-            <div class="empty-cart-container">
-                <img src="https://rukminim2.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="Empty Cart">
-                <h2>Your cart is empty!</h2>
-                <p>Looks like you haven't added anything to your cart yet.</p>
-                <a href="home.html"><button class="shop-now-btn">Start Shopping</button></a>
+    <div class="container">
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="Search" />
+                <div class="search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
             </div>
         </div>
         
-        <aside class="price-details-section">
-            <div class="price-header">Price Summary</div>
-        </aside>
-    </main>
+        <h2>Your Cart</h2>
+        
+        <div class="cart-layout">
+            <div class="cart-items-section" id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+                <div class="empty-cart-message">
+                    <p>Your cart is empty. <a href="home.html">Continue shopping</a></p>
+                </div>
+            </div>
+            
+            <div class="price-details-section">
+                <div class="price-details-card">
+                    <h3>Price Details</h3>
+                    <div class="price-detail">
+                        <span>Total MRP</span>
+                        <span id="total-mrp">₹0</span>
+                    </div>
+                    <div class="price-detail">
+                        <span>Delivery Fee</span>
+                        <span>FREE</span>
+                    </div>
+                    <div class="total-amount">
+                        <span>Total Amount</span>
+                        <span id="total-amount">₹0</span>
+                    </div>
+                    <button class="btn" style="width: 100%; margin-top: 20px;" id="checkout-btn">PROCEED TO CHECKOUT</button>
+                </div>
+            </div>
+        </div>
 
-    <div class="copyright">
-        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+        <div class="copyright">
+            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+        </div>
     </div>
-    <script src="scripts/global.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalMrpElement = document.getElementById('total-mrp');
+            const totalAmountElement = document.getElementById('total-amount');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            // Get cart from localStorage
+            const cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
+            
+            if (cart.length === 0) {
+                checkoutBtn.disabled = true;
+                checkoutBtn.style.opacity = '0.5';
+                return;
+            }
+            
+            // Render cart items
+            let totalMrp = 0;
+            
+            cartItemsContainer.innerHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalMrp += itemTotal;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">₹${item.price}</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                        </div>
+                        <div class="item-total">Total: ₹${itemTotal}</div>
+                        <div class="remove-item" data-id="${item.id}">Remove</div>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+            
+            // Update totals
+            totalMrpElement.textContent = `₹${totalMrp}`;
+            totalAmountElement.textContent = `₹${totalMrp}`;
+            
+            // Add event listeners for quantity controls
+            document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    updateQuantity(id, -1);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-btn.increase').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    updateQuantity(id, 1);
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    removeItem(id);
+                });
+            });
+            
+            // Checkout button
+            checkoutBtn.addEventListener('click', () => {
+                window.location.href = 'location.html';
+            });
+            
+            // Helper functions
+            function updateQuantity(id, change) {
+                const cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
+                const item = cart.find(item => item.id == id);
+                
+                if (item) {
+                    item.quantity += change;
+                    
+                    if (item.quantity <= 0) {
+                        removeItem(id);
+                        return;
+                    }
+                    
+                    localStorage.setItem('nammaRationCart', JSON.stringify(cart));
+                    location.reload();
+                }
+            }
+            
+            function removeItem(id) {
+                let cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
+                cart = cart.filter(item => item.id != id);
+                localStorage.setItem('nammaRationCart', JSON.stringify(cart));
+                location.reload();
+            }
+        });
+    </script>
 </body>
 </html>

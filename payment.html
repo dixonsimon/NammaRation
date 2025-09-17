@@ -1,55 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/logo.jpg"/>
     <link rel="stylesheet" href="stylesheets/global.css">
-    <link rel="icon" type="image/png" href="images/logo.jpg" />
+    <link rel="stylesheet" href="stylesheets/pages.css">
     <title>Namma Ration - Payment</title>
-  </head>
-  <body>
-      <div class="header">
-        <div class="search-bar">
-          <input type="text" placeholder="Search" />
-          <div class="search-icon">
-            <i class="fas fa-search"></i>
-          </div>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="Search" />
+                <div class="search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <h1>Payment:</h1>
-
-      <div class="payment-wrapper">
-        <div class="left-section">
-          <p>Pay through :</p>
-          <button class="UPI">UPI</button>
-          <button class="NETBANKING">Net Banking</button>
-          <button class="COD">COD</button>
-
-          <img src="images/QR.png" alt="QR code" height="200px" width="200px" />
-          <p class="qr-text">
-            Scan the QR code using your UPI app to <br>continue the payment
-          </p>
+        
+        <h2>Payment</h2>
+        
+        <div class="payment-wrapper">
+            <div class="left-section">
+                <div class="card">
+                    <h3>Delivery Address</h3>
+                    <div id="address-details">
+                        <!-- Address will be loaded from localStorage -->
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Order Summary</h3>
+                    <div id="order-summary">
+                        <!-- Order items will be loaded from localStorage -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="card">
+                    <h3>Select Payment Method</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="card">
+                            <input type="radio" name="payment" id="card-payment">
+                            <label for="card-payment">Credit/Debit Card</label>
+                        </div>
+                        <div class="payment-method" data-method="upi">
+                            <input type="radio" name="payment" id="upi-payment">
+                            <label for="upi-payment">UPI</label>
+                        </div>
+                        <div class="payment-method" data-method="cod">
+                            <input type="radio" name="payment" id="cod-payment" checked>
+                            <label for="cod-payment">Cash on Delivery</label>
+                        </div>
+                    </div>
+                    
+                    <div id="payment-details">
+                        <!-- Payment details will be shown based on selection -->
+                        <div class="cod-message">
+                            <p>Pay with cash when your order is delivered.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" style="width: 100%; margin-top: 20px;" id="pay-now">PAY NOW</button>
+                </div>
+            </div>
         </div>
 
-        <div class="right-section">
-          <div class="title">Preferred Delivery Time-Slot</div>
-          <div class="slot">9am to 10am</div>
-          <div class="slot">10am to 11am</div>
-          <div class="slot">11am to 12pm</div>
+        <div class="copyright">
+            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
         </div>
+    </div>
 
-      </div>
-      <button class="shop-now-btn" style="display: block; margin: -85px 75px 20px auto;"><a href="thank-you.html">Proceed</a></button>
-    <div class="copyright">
-          <p style="margin-top: -15px;">
-            &copy; 2025 Namma Ration. All rights reserved.
-          </p>
-        </div>
-        <script src="scripts/global.js"></script>
-  </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load address details
+            const addressDetails = document.getElementById('address-details');
+            const addressData = JSON.parse(localStorage.getItem('deliveryAddress') || '{}');
+            
+            if (addressData.address) {
+                addressDetails.innerHTML = `
+                    <p>${addressData.address}</p>
+                    <p>PIN: ${addressData.pincode}</p>
+                    <p>Phone: ${addressData.phone}</p>
+                `;
+            } else {
+                addressDetails.innerHTML = '<p>No address found. <a href="location.html">Please add an address</a></p>';
+            }
+            
+            // Load order summary
+            const orderSummary = document.getElementById('order-summary');
+            const cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
+            
+            if (cart.length === 0) {
+                orderSummary.innerHTML = '<p>Your cart is empty</p>';
+                document.getElementById('pay-now').disabled = true;
+                return;
+            }
+            
+            let total = 0;
+            let summaryHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                summaryHTML += `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>₹${itemTotal}</span>
+                    </div>
+                `;
+            });
+            
+            summaryHTML += `
+                <div style="border-top: 1px solid #ddd; padding-top: 10px; margin-top: 10px; font-weight: bold; display: flex; justify-content: space-between;">
+                    <span>Total</span>
+                    <span>₹${total}</span>
+                </div>
+            `;
+            
+            orderSummary.innerHTML = summaryHTML;
+            
+            // Payment method selection
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const paymentDetails = document.getElementById('payment-details');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', () => {
+                    // Update radio button
+                    const radio = method.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Update selected style
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    method.classList.add('selected');
+                    
+                    // Show appropriate payment details
+                    const methodType = method.getAttribute('data-method');
+                    
+                    switch(methodType) {
+                        case 'card':
+                            paymentDetails.innerHTML = `
+                                <div class="form-group" style="margin-top: 15px;">
+                                    <label for="card-number">Card Number</label>
+                                    <input type="text" id="card-number" class="form-control" placeholder="Enter card number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-expiry">Expiry Date</label>
+                                    <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="text" id="card-cvv" class="form-control" placeholder="CVV">
+                                </div>
+                            `;
+                            break;
+                        case 'upi':
+                            paymentDetails.innerHTML = `
+                                <div class="form-group" style="margin-top: 15px;">
+                                    <label for="upi-id">UPI ID</label>
+                                    <input type="text" id="upi-id" class="form-control" placeholder="Enter UPI ID">
+                                </div>
+                            `;
+                            break;
+                        case 'cod':
+                            paymentDetails.innerHTML = `
+                                <div class="cod-message">
+                                    <p>Pay with cash when your order is delivered.</p>
+                                </div>
+                            `;
+                            break;
+                    }
+                });
+            });
+            
+            // Pay now button
+            document.getElementById('pay-now').addEventListener('click', () => {
+                // In a real application, you would process payment here
+                // For demo purposes, we'll just redirect to success page
+                window.location.href = 'success.html';
+            });
+        });
+    </script>
+</body>
 </html>
