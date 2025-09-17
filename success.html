@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/logo.jpg"/>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <title>Namma Ration - Order Success</title>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3t6PpUyV6yQJfQk8X1vHp8F7F5f9n3Q3Q2g&s" alt="Namma Ration Logo">
+                <h1>Namma Ration</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products, categories, or offers...">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="success-title">Order Placed Successfully!</h1>
+            <p class="success-message">Thank you for your order. Your ration items will be delivered soon.</p>
+            
+            <div class="order-details">
+                <h3>Order Details</h3>
+                <div id="order-details-content">
+                    <!-- Order details will be loaded from localStorage -->
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <a href="home.html" class="btn btn-success">Continue Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear the cart
+            localStorage.removeItem('cart');
+            updateCartCount();
+            
+            // Show order details
+            const orderDetails = document.getElementById('order-details-content');
+            const addressData = JSON.parse(localStorage.getItem('deliveryAddress') || '{}');
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            
+            let orderHTML = '';
+            
+            if (addressData.address) {
+                orderHTML += `
+                    <div class="order-info">
+                        <p><strong>Delivery Address:</strong></p>
+                        <p>${addressData.address}</p>
+                        <p>PIN: ${addressData.pincode}</p>
+                        <p>Phone: ${addressData.phone}</p>
+                    </div>
+                `;
+            }
+            
+            if (cart.length > 0) {
+                orderHTML += `<div class="order-items">`;
+                orderHTML += `<p><strong>Items:</strong></p>`;
+                
+                cart.forEach(item => {
+                    orderHTML += `
+                        <div class="order-item">
+                            <span>${item.name} x${item.quantity}</span>
+                            <span>₹${item.price * item.quantity}</span>
+                        </div>
+                    `;
+                });
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                orderHTML += `</div>`;
+                orderHTML += `
+                    <div class="order-total">
+                        <span>Total Amount:</span>
+                        <span>₹${total}</span>
+                    </div>
+                `;
+            } else {
+                orderHTML += `<p>No order details available.</p>`;
+            }
+            
+            orderDetails.innerHTML = orderHTML;
+        });
+    </script>
+</body>
+</html>
