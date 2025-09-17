@@ -49,14 +49,15 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0px;
 }
 
 .logo img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
+    height: 80px;
+    width: 80px;
     object-fit: cover;
+    margin-bottom: -20px;
+    margin-top: -13px;
 }
 
 .logo h1 {
