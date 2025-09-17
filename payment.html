@@ -5,33 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
-    <link rel="stylesheet" href="stylesheets/global.css">
-    <link rel="stylesheet" href="stylesheets/pages.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
     <title>Namma Ration - Payment</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="search-bar">
-                <input type="text" placeholder="Search" />
-                <div class="search-icon">
-                    <i class="fas fa-search"></i>
-                </div>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3t6PpUyV6yQJfQk8X1vHp8F7F5f9n3Q3Q2g&s" alt="Namma Ration Logo">
+                <h1>Namma Ration</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
             </div>
         </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products, categories, or offers...">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <h1 class="page-title">Payment</h1>
         
-        <h2>Payment</h2>
-        
-        <div class="payment-wrapper">
-            <div class="left-section">
-                <div class="card">
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="form-container">
                     <h3>Delivery Address</h3>
                     <div id="address-details">
                         <!-- Address will be loaded from localStorage -->
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="form-container">
                     <h3>Order Summary</h3>
                     <div id="order-summary">
                         <!-- Order items will be loaded from localStorage -->
@@ -39,150 +54,40 @@
                 </div>
             </div>
             
-            <div class="right-section">
-                <div class="card">
-                    <h3>Select Payment Method</h3>
-                    <div class="payment-methods">
-                        <div class="payment-method" data-method="card">
-                            <input type="radio" name="payment" id="card-payment">
-                            <label for="card-payment">Credit/Debit Card</label>
-                        </div>
-                        <div class="payment-method" data-method="upi">
-                            <input type="radio" name="payment" id="upi-payment">
-                            <label for="upi-payment">UPI</label>
-                        </div>
-                        <div class="payment-method" data-method="cod">
-                            <input type="radio" name="payment" id="cod-payment" checked>
-                            <label for="cod-payment">Cash on Delivery</label>
-                        </div>
+            <div class="cart-summary">
+                <h3>Select Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="card">
+                        <input type="radio" name="payment" id="card-payment">
+                        <label for="card-payment"><i class="fas fa-credit-card"></i> Credit/Debit Card</label>
                     </div>
-                    
-                    <div id="payment-details">
-                        <!-- Payment details will be shown based on selection -->
-                        <div class="cod-message">
-                            <p>Pay with cash when your order is delivered.</p>
-                        </div>
+                    <div class="payment-method" data-method="upi">
+                        <input type="radio" name="payment" id="upi-payment">
+                        <label for="upi-payment"><i class="fas fa-mobile-alt"></i> UPI</label>
                     </div>
-                    
-                    <button class="btn" style="width: 100%; margin-top: 20px;" id="pay-now">PAY NOW</button>
+                    <div class="payment-method selected" data-method="cod">
+                        <input type="radio" name="payment" id="cod-payment" checked>
+                        <label for="cod-payment"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</label>
+                    </div>
                 </div>
+                
+                <div id="payment-details" class="payment-details">
+                    <!-- Payment details will be shown based on selection -->
+                    <div class="cod-message">
+                        <p>Pay with cash when your order is delivered.</p>
+                    </div>
+                </div>
+                
+                <button class="btn" id="pay-now" style="width: 100%; margin-top: 20px;">PAY NOW</button>
             </div>
         </div>
+    </main>
 
-        <div class="copyright">
-            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load address details
-            const addressDetails = document.getElementById('address-details');
-            const addressData = JSON.parse(localStorage.getItem('deliveryAddress') || '{}');
-            
-            if (addressData.address) {
-                addressDetails.innerHTML = `
-                    <p>${addressData.address}</p>
-                    <p>PIN: ${addressData.pincode}</p>
-                    <p>Phone: ${addressData.phone}</p>
-                `;
-            } else {
-                addressDetails.innerHTML = '<p>No address found. <a href="location.html">Please add an address</a></p>';
-            }
-            
-            // Load order summary
-            const orderSummary = document.getElementById('order-summary');
-            const cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
-            
-            if (cart.length === 0) {
-                orderSummary.innerHTML = '<p>Your cart is empty</p>';
-                document.getElementById('pay-now').disabled = true;
-                return;
-            }
-            
-            let total = 0;
-            let summaryHTML = '';
-            
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                summaryHTML += `
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span>${item.name} x${item.quantity}</span>
-                        <span>₹${itemTotal}</span>
-                    </div>
-                `;
-            });
-            
-            summaryHTML += `
-                <div style="border-top: 1px solid #ddd; padding-top: 10px; margin-top: 10px; font-weight: bold; display: flex; justify-content: space-between;">
-                    <span>Total</span>
-                    <span>₹${total}</span>
-                </div>
-            `;
-            
-            orderSummary.innerHTML = summaryHTML;
-            
-            // Payment method selection
-            const paymentMethods = document.querySelectorAll('.payment-method');
-            const paymentDetails = document.getElementById('payment-details');
-            
-            paymentMethods.forEach(method => {
-                method.addEventListener('click', () => {
-                    // Update radio button
-                    const radio = method.querySelector('input[type="radio"]');
-                    radio.checked = true;
-                    
-                    // Update selected style
-                    paymentMethods.forEach(m => m.classList.remove('selected'));
-                    method.classList.add('selected');
-                    
-                    // Show appropriate payment details
-                    const methodType = method.getAttribute('data-method');
-                    
-                    switch(methodType) {
-                        case 'card':
-                            paymentDetails.innerHTML = `
-                                <div class="form-group" style="margin-top: 15px;">
-                                    <label for="card-number">Card Number</label>
-                                    <input type="text" id="card-number" class="form-control" placeholder="Enter card number">
-                                </div>
-                                <div class="form-group">
-                                    <label for="card-expiry">Expiry Date</label>
-                                    <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
-                                </div>
-                                <div class="form-group">
-                                    <label for="card-cvv">CVV</label>
-                                    <input type="text" id="card-cvv" class="form-control" placeholder="CVV">
-                                </div>
-                            `;
-                            break;
-                        case 'upi':
-                            paymentDetails.innerHTML = `
-                                <div class="form-group" style="margin-top: 15px;">
-                                    <label for="upi-id">UPI ID</label>
-                                    <input type="text" id="upi-id" class="form-control" placeholder="Enter UPI ID">
-                                </div>
-                            `;
-                            break;
-                        case 'cod':
-                            paymentDetails.innerHTML = `
-                                <div class="cod-message">
-                                    <p>Pay with cash when your order is delivered.</p>
-                                </div>
-                            `;
-                            break;
-                    }
-                });
-            });
-            
-            // Pay now button
-            document.getElementById('pay-now').addEventListener('click', () => {
-                // In a real application, you would process payment here
-                // For demo purposes, we'll just redirect to success page
-                window.location.href = 'success.html';
-            });
-        });
-    </script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/payment.js"></script>
 </body>
 </html>

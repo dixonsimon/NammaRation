@@ -5,95 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
-    <link rel="stylesheet" href="stylesheets/global.css">
-    <link rel="stylesheet" href="stylesheets/pages.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
     <title>Namma Ration - Cart</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="search-bar">
-                <input type="text" placeholder="Search" />
-                <div class="search-icon">
-                    <i class="fas fa-search"></i>
-                </div>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3t6PpUyV6yQJfQk8X1vHp8F7F5f9n3Q3Q2g&s" alt="Namma Ration Logo">
+                <h1>Namma Ration</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
             </div>
         </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products, categories, or offers...">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <h1 class="page-title">Your Cart</h1>
         
-        <h2>Your Cart</h2>
-        
-        <div class="cart-layout">
-            <div class="cart-items-section" id="cart-items">
-                <!-- Cart items will be dynamically inserted here -->
+        <div class="cart-container">
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded dynamically -->
                 <div class="empty-cart-message">
                     <p>Your cart is empty. <a href="home.html">Continue shopping</a></p>
                 </div>
             </div>
             
-            <div class="price-details-section">
-                <div class="price-details-card">
-                    <h3>Price Details</h3>
-                    <div class="price-detail">
-                        <span>Total MRP</span>
-                        <span id="total-mrp">₹0</span>
-                    </div>
-                    <div class="price-detail">
-                        <span>Delivery Fee</span>
-                        <span>FREE</span>
-                    </div>
-                    <div class="total-amount">
-                        <span>Total Amount</span>
-                        <span id="total-amount">₹0</span>
-                    </div>
-                    <button class="btn" style="width: 100%; margin-top: 20px;" id="checkout-btn">PROCEED TO CHECKOUT</button>
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span id="subtotal">₹0</span>
                 </div>
+                <div class="summary-item">
+                    <span>Delivery Fee</span>
+                    <span>FREE</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="total">₹0</span>
+                </div>
+                
+                <a href="location.html" class="btn" style="width: 100%; margin-top: 20px; display: block; text-align: center;">PROCEED TO CHECKOUT</a>
             </div>
         </div>
+    </main>
 
-        <div class="copyright">
-            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+    </footer>
 
+    <script src="scripts/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             const cartItemsContainer = document.getElementById('cart-items');
-            const totalMrpElement = document.getElementById('total-mrp');
-            const totalAmountElement = document.getElementById('total-amount');
-            const checkoutBtn = document.getElementById('checkout-btn');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
             
             // Get cart from localStorage
-            const cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             
             if (cart.length === 0) {
-                checkoutBtn.disabled = true;
-                checkoutBtn.style.opacity = '0.5';
                 return;
             }
             
             // Render cart items
-            let totalMrp = 0;
+            let subtotal = 0;
             
             cartItemsContainer.innerHTML = '';
             
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
-                totalMrp += itemTotal;
+                subtotal += itemTotal;
                 
                 const cartItemElement = document.createElement('div');
                 cartItemElement.className = 'cart-item';
                 cartItemElement.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                     <div class="cart-item-details">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">₹${item.price}</div>
+                        <h3 class="cart-item-title">${item.name}</h3>
+                        <p class="cart-item-price">₹${item.price}/unit</p>
                         <div class="quantity-controls">
                             <button class="quantity-btn decrease" data-id="${item.id}">-</button>
                             <span class="quantity-value">${item.quantity}</span>
                             <button class="quantity-btn increase" data-id="${item.id}">+</button>
                         </div>
-                        <div class="item-total">Total: ₹${itemTotal}</div>
-                        <div class="remove-item" data-id="${item.id}">Remove</div>
+                        <p class="item-total">Total: ₹${itemTotal}</p>
+                        <span class="remove-item" data-id="${item.id}">Remove</span>
                     </div>
                 `;
                 
@@ -101,8 +113,8 @@
             });
             
             // Update totals
-            totalMrpElement.textContent = `₹${totalMrp}`;
-            totalAmountElement.textContent = `₹${totalMrp}`;
+            subtotalElement.textContent = `₹${subtotal}`;
+            totalElement.textContent = `₹${subtotal}`;
             
             // Add event listeners for quantity controls
             document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
@@ -126,14 +138,9 @@
                 });
             });
             
-            // Checkout button
-            checkoutBtn.addEventListener('click', () => {
-                window.location.href = 'location.html';
-            });
-            
             // Helper functions
             function updateQuantity(id, change) {
-                const cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
+                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
                 const item = cart.find(item => item.id == id);
                 
                 if (item) {
@@ -144,15 +151,15 @@
                         return;
                     }
                     
-                    localStorage.setItem('nammaRationCart', JSON.stringify(cart));
+                    localStorage.setItem('cart', JSON.stringify(cart));
                     location.reload();
                 }
             }
             
             function removeItem(id) {
-                let cart = JSON.parse(localStorage.getItem('nammaRationCart')) || [];
+                let cart = JSON.parse(localStorage.getItem('cart') || '[]');
                 cart = cart.filter(item => item.id != id);
-                localStorage.setItem('nammaRationCart', JSON.stringify(cart));
+                localStorage.setItem('cart', JSON.stringify(cart));
                 location.reload();
             }
         });

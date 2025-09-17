@@ -5,72 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
-    <link rel="stylesheet" href="stylesheets/global.css">
-    <link rel="stylesheet" href="stylesheets/pages.css">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
     <title>Namma Ration - Home</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search for products..." />
-                <div class="search-icon" id="search-button">
-                    <i class="fas fa-search"></i>
-                </div>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3t6PpUyV6yQJfQk8X1vHp8F7F5f9n3Q3Q2g&s" alt="Namma Ration Logo">
+                <h1>Namma Ration</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
             </div>
         </div>
+    </header>
 
-        <div class="main-content">
-            <div class="sidebar">
-                <div class="sidebar-item" data-category="all">
-                    <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="All Products" />
-                </div>
-                <div class="sidebar-item" data-category="rice">
-                    <img src="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=" alt="Rice" />
-                </div>
-                <div class="sidebar-item" data-category="dal">
-                    <img src="https://tiimg.tistatic.com/fp/1/007/565/100-pure-raw-organic-yellow-toor-dal-for-cooking-uses-648.jpg" alt="Dal" />
-                </div>
-                <div class="sidebar-item" data-category="soap">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpBhsNbkrw-qzAFle7GzIOUES6avcxxckLcw&s" alt="Soap" />
-                </div>
-                <div class="sidebar-item" data-category="oil">
-                    <img src="https://naturelandorganics.com/cdn/shop/articles/organic-sunflower-oil-Natureland_organics_1200x1200.jpg?v=1673681164" alt="Oil" />
-                </div>
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products, categories, or offers...">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
             </div>
-
-            <div class="content-area">
-                <div class="product-grid">
-                    <div class="product-item" data-id="1" data-name="Arborio Rice" data-category="rice">
-                        <img src="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=" alt="Rice"/>
-                        <p>Arborio Rice - ₹65/kg</p>
-                    </div>
-                    <div class="product-item" data-id="2" data-name="Masoor Dal" data-category="dal">
-                        <img src="https://tiimg.tistatic.com/fp/1/007/565/100-pure-raw-organic-yellow-toor-dal-for-cooking-uses-648.jpg" alt="Dal"/>
-                        <p>Masoor Dal - ₹120/kg</p>
-                    </div>
-                    <div class="product-item" data-id="3" data-name="Soap" data-category="soap">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpBhsNbkrw-qzAFle7GzIOUES6avcxxckLcw&s" alt="Soap"/>
-                        <p>Soap - ₹25/piece</p>
-                    </div>
-                    <div class="product-item" data-id="4" data-name="Oil" data-category="oil">
-                        <img src="https://naturelandorganics.com/cdn/shop/articles/organic-sunflower-oil-Natureland_organics_1200x1200.jpg?v=1673681164" alt="Oil"/>
-                        <p>Oil - ₹180/liter</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="cart-icon">    
-            <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-
-        <div class="copyright">
-            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
         </div>
     </div>
 
-    <script src="scripts/global.js"></script>
+    <main>
+        <h1 class="page-title">Our Products</h1>
+        
+        <div class="categories">
+            <div class="category active" data-category="all">
+                <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="All Products">
+                <span>All</span>
+            </div>
+            <div class="category" data-category="rice">
+                <img src="https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=" alt="Rice">
+                <span>Rice</span>
+            </div>
+            <div class="category" data-category="dal">
+                <img src="https://tiimg.tistatic.com/fp/1/007/565/100-pure-raw-organic-yellow-toor-dal-for-cooking-uses-648.jpg" alt="Dal">
+                <span>Dal</span>
+            </div>
+            <div class="category" data-category="oil">
+                <img src="https://naturelandorganics.com/cdn/shop/articles/organic-sunflower-oil-Natureland_organics_1200x1200.jpg?v=1673681164" alt="Oil">
+                <span>Oil</span>
+            </div>
+            <div class="category" data-category="soap">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpBhsNbkrw-qzAFle7GzIOUES6avcxxckLcw&s" alt="Soap">
+                <span>Soap</span>
+            </div>
+        </div>
+        
+        <div id="products-grid" class="products-grid">
+            <!-- Products will be loaded dynamically -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
     <script src="scripts/home.js"></script>
 </body>
 </html>
