@@ -94,16 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function performSearch() {
-    const searchInput = document.querySelector('.search-bar input');
-    const searchTerm = searchInput.value.trim();
-    
-    if (searchTerm.length > 0) {
-        alert(`Searching for: ${searchTerm}`);
-        // In a real application, this would filter products or redirect to search results
-    }
-}
-
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const cartCount = document.getElementById('cart-count');
@@ -187,3 +177,23 @@ function showNotification(message, type = 'success') {
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
+
+// Search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize search
+    if (typeof initializeSearch === 'function') {
+        initializeSearch();
+    }
+    
+    // Add to cart functionality for search results
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('add-to-cart')) {
+            const productId = e.target.getAttribute('data-id');
+            const productName = e.target.getAttribute('data-name');
+            const productPrice = parseFloat(e.target.getAttribute('data-price'));
+            const productImage = e.target.getAttribute('data-image');
+            
+            addToCart(productId, productName, productPrice, productImage);
+        }
+    });
+});
