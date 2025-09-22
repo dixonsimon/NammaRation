@@ -391,6 +391,10 @@ footer {
     margin-bottom: 0.5rem;
 }
 
+.empty-cart-message {
+    text-align: center;
+}
+
 .quantity-controls {
     display: flex;
     align-items: center;
