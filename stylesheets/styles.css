@@ -60,6 +60,11 @@ header {
     margin-top: -13px;
 }
 
+.logo a {
+    text-decoration: none;
+    color: white;
+}
+
 .logo h1 {
     font-size: 1.5rem;
     font-weight: 600;
