@@ -1,4 +1,3 @@
-/* styles/style.css */
 :root {
     --primary: #2c3e50;
     --secondary: #3498db;
@@ -27,7 +26,6 @@ body {
     flex-direction: column;
 }
 
-/* Header & Navigation */
 header {
     background: var(--primary);
     color: white;
@@ -93,7 +91,6 @@ header {
     background: var(--secondary);
 }
 
-/* Search Bar */
 .search-container {
     background: var(--secondary);
     padding: 1.5rem 2rem;
@@ -132,7 +129,6 @@ header {
     background: var(--dark);
 }
 
-/* Main Content */
 main {
     flex: 1;
     padding: 2rem;
@@ -162,7 +158,6 @@ main {
     border-radius: 2px;
 }
 
-/* Form Styles */
 .form-container {
     background: white;
     border-radius: 10px;
@@ -202,7 +197,6 @@ textarea.form-control {
     resize: vertical;
 }
 
-/* Button */
 .btn-container {
     text-align: center;
     margin: 2rem 0;
@@ -237,7 +231,6 @@ textarea.form-control {
     background: #27ae60;
 }
 
-/* Footer */
 footer {
     background: var(--primary);
     color: white;
@@ -246,7 +239,6 @@ footer {
     margin-top: auto;
 }
 
-/* Home Page Styles */
 .categories {
     display: flex;
     gap: 1rem;
@@ -345,7 +337,6 @@ footer {
     background: var(--primary);
 }
 
-/* Cart Page Styles */
 .cart-container {
     display: flex;
     gap: 2rem;
@@ -444,7 +435,6 @@ footer {
     border-top: 2px solid #eee;
 }
 
-/* Payment Page Styles */
 .payment-methods {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -484,7 +474,6 @@ footer {
     margin-bottom: 2rem;
 }
 
-/* Success Page Styles */
 .success-container {
     text-align: center;
     padding: 3rem 1rem;
@@ -546,7 +535,6 @@ footer {
     border-top: 2px solid #eee;
 }
 
-/* Login Page Styles */
 .login-container {
     min-height: 100vh;
     display: flex;
@@ -634,7 +622,6 @@ footer {
     font-size: 1.2rem;
 }
 
-/* Search Results Dropdown */
 .search-bar {
     position: relative;
 }
@@ -763,7 +750,6 @@ footer {
     margin: 0;
 }
 
-/* Search bar focus with results */
 .search-bar:focus-within {
     border-radius: 25px 25px 0 0;
 }
@@ -772,7 +758,6 @@ footer {
     border-radius: 0 0 8px 8px;
 }
 
-/* Animation for search results */
 .search-results {
     animation: fadeIn 0.2s ease;
 }

@@ -39,7 +39,6 @@
         
         <div class="cart-container">
             <div class="cart-items" id="cart-items">
-                <!-- Cart items will be loaded dynamically -->
                 <div class="empty-cart-message">
                     <p>Your cart is empty. <a href="home.html">Continue shopping</a></p>
                 </div>
@@ -76,14 +75,12 @@
             const subtotalElement = document.getElementById('subtotal');
             const totalElement = document.getElementById('total');
             
-            // Get cart from localStorage
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             
             if (cart.length === 0) {
                 return;
             }
             
-            // Render cart items
             let subtotal = 0;
             
             cartItemsContainer.innerHTML = '';
@@ -112,11 +109,9 @@
                 cartItemsContainer.appendChild(cartItemElement);
             });
             
-            // Update totals
             subtotalElement.textContent = `₹${subtotal}`;
             totalElement.textContent = `₹${subtotal}`;
             
-            // Add event listeners for quantity controls
             document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const id = btn.getAttribute('data-id');
@@ -138,7 +133,6 @@
                 });
             });
             
-            // Helper functions
             function updateQuantity(id, change) {
                 const cart = JSON.parse(localStorage.getItem('cart') || '[]');
                 const item = cart.find(item => item.id == id);

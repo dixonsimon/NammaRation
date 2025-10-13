@@ -467,22 +467,18 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Thumbnail image switching
             const thumbnails = document.querySelectorAll('.product-thumbnail');
             const mainImage = document.getElementById('main-image');
             
             thumbnails.forEach(thumb => {
                 thumb.addEventListener('click', function() {
-                    // Update main image
                     mainImage.src = this.getAttribute('data-image');
                     
-                    // Update active thumbnail
                     thumbnails.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                 });
             });
             
-            // Quantity controls
             const quantityInput = document.getElementById('quantity');
             const decreaseBtn = document.getElementById('decrease-qty');
             const increaseBtn = document.getElementById('increase-qty');
@@ -496,12 +492,11 @@
             
             increaseBtn.addEventListener('click', function() {
                 let value = parseInt(quantityInput.value);
-                if (value < 10) { // Max 10kg
+                if (value < 10) { 
                     quantityInput.value = value + 1;
                 }
             });
             
-            // Add to cart functionality
             const addToCartBtn = document.getElementById('add-to-cart');
             addToCartBtn.addEventListener('click', function() {
                 const quantity = parseInt(quantityInput.value);
@@ -513,14 +508,11 @@
                     quantity: quantity
                 };
                 
-                // Add to cart
                 addToCart(product.id, product.name, product.price, product.image, product.quantity);
                 
-                // Show success message
                 showNotification(`${quantity} kg of ${product.name} added to cart`, 'success');
             });
             
-            // Tab switching
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');
             
@@ -528,11 +520,9 @@
                 tab.addEventListener('click', function() {
                     const tabId = this.getAttribute('data-tab');
                     
-                    // Update active tab
                     tabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Show relevant content
                     tabContents.forEach(content => {
                         content.classList.remove('active');
                         if (content.id === `${tabId}-content`) {
@@ -542,7 +532,6 @@
                 });
             });
             
-            // Cart functionality (from script.js)
             function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
                 const cart = JSON.parse(localStorage.getItem('cart') || '[]');
                 const existingItem = cart.find(item => item.id === productId);
@@ -580,12 +569,10 @@
             }
             
             function showNotification(message, type = 'success') {
-                // Create notification element
                 const notification = document.createElement('div');
                 notification.className = `notification notification-${type}`;
                 notification.textContent = message;
                 
-                // Add styles if not already added
                 if (!document.querySelector('#notification-styles')) {
                     const styles = document.createElement('style');
                     styles.id = 'notification-styles';
@@ -617,14 +604,12 @@
                 
                 document.body.appendChild(notification);
                 
-                // Remove after 3 seconds
                 setTimeout(() => {
                     notification.style.animation = 'slideOut 0.3s ease';
                     setTimeout(() => notification.remove(), 300);
                 }, 3000);
             }
             
-            // Initialize cart count
             updateCartCount();
         });
     </script>

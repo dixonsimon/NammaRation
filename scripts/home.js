@@ -1,6 +1,4 @@
-// scripts/home.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Sample product data
     const products = [
         {
             id: 1,
@@ -84,20 +82,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
     
-    // Render products
     renderProducts(products);
     
-    // Category filtering
     const categories = document.querySelectorAll('.category');
     categories.forEach(category => {
         category.addEventListener('click', function() {
             const categoryName = this.getAttribute('data-category');
             
-            // Update active category
             categories.forEach(c => c.classList.remove('active'));
             this.classList.add('active');
             
-            // Filter products
             if (categoryName === 'all') {
                 renderProducts(products);
             } else {
@@ -107,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add to cart functionality
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('add-to-cart')) {
             const productId = e.target.getAttribute('data-id');

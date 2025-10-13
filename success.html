@@ -45,7 +45,6 @@
             <div class="order-details">
                 <h3>Order Details</h3>
                 <div id="order-details-content">
-                    <!-- Order details will be loaded from localStorage -->
                 </div>
             </div>
             
@@ -62,11 +61,9 @@
     <script src="scripts/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Clear the cart
             localStorage.removeItem('cart');
             updateCartCount();
             
-            // Show order details
             const orderDetails = document.getElementById('order-details-content');
             const addressData = JSON.parse(localStorage.getItem('deliveryAddress') || '{}');
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');

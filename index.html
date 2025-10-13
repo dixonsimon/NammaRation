@@ -175,7 +175,6 @@
             margin-top: 2rem;
         }
 
-        /* Responsive styles */
         @media (max-width: 992px) {
             .login-logo img {
                 height: 250px;
@@ -291,7 +290,6 @@
             const rationCard = document.getElementById('ration-card').value;
             const phone = document.getElementById('phone').value;
             
-            // Simple validation
             if (rationCard.length < 5) {
                 alert('Please enter a valid ration card number');
                 return;
@@ -302,13 +300,11 @@
                 return;
             }
             
-            // Store user info (in a real app, this would be verified with a server)
             localStorage.setItem('userInfo', JSON.stringify({
                 rationCard,
                 phone
             }));
             
-            // Redirect to home page
             window.location.href = 'home.html';
         });
     </script>

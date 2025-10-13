@@ -1,6 +1,4 @@
-// scripts/payment.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Load address details
     const addressDetails = document.getElementById('address-details');
     const addressData = JSON.parse(localStorage.getItem('deliveryAddress') || '{}');
     
@@ -15,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         addressDetails.innerHTML = '<p>No address found. <a href="location.html">Please add an address</a></p>';
     }
     
-    // Load order summary
     const orderSummary = document.getElementById('order-summary');
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     
@@ -48,21 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     orderSummary.innerHTML = summaryHTML;
     
-    // Payment method selection
     const paymentMethods = document.querySelectorAll('.payment-method');
     const paymentDetails = document.getElementById('payment-details');
     
     paymentMethods.forEach(method => {
         method.addEventListener('click', () => {
-            // Update radio button
             const radio = method.querySelector('input[type="radio"]');
             radio.checked = true;
             
-            // Update selected style
             paymentMethods.forEach(m => m.classList.remove('selected'));
             method.classList.add('selected');
             
-            // Show appropriate payment details
             const methodType = method.getAttribute('data-method');
             
             switch(methodType) {
@@ -101,10 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Pay now button
     document.getElementById('pay-now').addEventListener('click', () => {
-        // In a real application, you would process payment here
-        // For demo purposes, we'll just redirect to success page
         window.location.href = 'success.html';
     });
 });
