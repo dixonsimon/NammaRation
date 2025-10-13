@@ -110,18 +110,37 @@ function updateCartCount() {
     }
 }
 
+// guard set to avoid double-add when multiple handlers fire
+const recentAdds = new Set();
+
 function addToCart(productId, productName, productPrice, productImage) {
+    // Normalize inputs and provide safe defaults
+    const id = productId != null ? String(productId) : `tmp-${Date.now()}`;
+
+    // Prevent accidental duplicate adds (multiple event handlers firing)
+    if (recentAdds.has(id)) {
+        return;
+    }
+    recentAdds.add(id);
+    // keep key for short period to ignore duplicates (600ms)
+    setTimeout(() => recentAdds.delete(id), 600);
+
+    const name = productName || 'Unknown product';
+    const price = typeof productPrice === 'number' && !isNaN(productPrice) ? productPrice : parseFloat(productPrice) || 0;
+    const image = productImage || '';
+
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const existingItem = cart.find(item => item.id === productId);
+    // Compare ids as strings to avoid type mismatch
+    const existingItem = cart.find(item => String(item.id) === id);
     
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
         cart.push({
-            id: productId,
-            name: productName,
-            price: productPrice,
-            image: productImage,
+            id: id,
+            name: name,
+            price: price,
+            image: image,
             quantity: 1
         });
     }
@@ -130,7 +149,7 @@ function addToCart(productId, productName, productPrice, productImage) {
     updateCartCount();
     
     // Show notification
-    showNotification(`${productName} added to cart`);
+    showNotification(`${name} added to cart`);
 }
 
 function showNotification(message, type = 'success') {
@@ -185,15 +204,68 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeSearch();
     }
     
-    // Add to cart functionality for search results
+    // Add to cart functionality for search results and product lists
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('add-to-cart')) {
-            const productId = e.target.getAttribute('data-id');
-            const productName = e.target.getAttribute('data-name');
-            const productPrice = parseFloat(e.target.getAttribute('data-price'));
-            const productImage = e.target.getAttribute('data-image');
-            
-            addToCart(productId, productName, productPrice, productImage);
+        // match elements that are explicit add-to-cart triggers or common view/add buttons
+        const trigger = e.target.closest && e.target.closest('.add-to-cart, .view-btn, [data-add-to-cart], [data-action="add-to-cart"]');
+        if (!trigger) return;
+
+        // If this is an Add-to-Cart action, prevent navigation (e.g. when button is inside an <a>)
+        const isAddAction = trigger.matches('.add-to-cart, [data-add-to-cart], [data-action="add-to-cart"]');
+        if (isAddAction) {
+            e.preventDefault();
         }
+
+        // Helper to extract numeric price from text like "₹123" or "123"
+        const parsePriceText = (text) => {
+            if (!text) return 0;
+            const m = String(text).replace(/,/g, '').match(/(\d+(\.\d+)?)/);
+            return m ? parseFloat(m[0]) : 0;
+        };
+
+        // Try dataset first
+        let productId = trigger.dataset.id ?? trigger.getAttribute('data-id');
+        let productName = trigger.dataset.name ?? trigger.getAttribute('data-name');
+        let productPriceRaw = trigger.dataset.price ?? trigger.getAttribute('data-price');
+        let productImage = trigger.dataset.image ?? trigger.getAttribute('data-image');
+
+        // If any important info missing, try to find nearest product card and read from DOM
+        if (!productId || !productName || !productPriceRaw || !productImage) {
+            const productCard = trigger.closest && trigger.closest('.product-card');
+            if (productCard) {
+                // id from data-id on card or from link href ?id=
+                if (!productId) {
+                    productId = productCard.dataset.id || (() => {
+                        const a = productCard.querySelector('a[href*="?id="]');
+                        if (a) {
+                            const url = new URL(a.href, window.location.origin);
+                            return url.searchParams.get('id');
+                        }
+                        return null;
+                    })();
+                }
+                if (!productName) {
+                    productName = productCard.querySelector('h3')?.textContent?.trim() ||
+                                  productCard.querySelector('.product-info > div')?.textContent?.trim();
+                }
+                if (!productPriceRaw) {
+                    productPriceRaw = productCard.querySelector('.price')?.textContent || productCard.querySelector('.product-price')?.textContent;
+                }
+                if (!productImage) {
+                    productImage = productCard.querySelector('img')?.src;
+                }
+            }
+        }
+
+        // Final normalization
+        const productPrice = parseFloat(productPriceRaw) || parsePriceText(productPriceRaw);
+
+        // If still missing a sensible id/name, abort
+        if (!productId || !productName) {
+            showNotification('Unable to add product to cart (missing data)', 'error');
+            return;
+        }
+
+        addToCart(productId, productName, productPrice, productImage);
     });
 });
