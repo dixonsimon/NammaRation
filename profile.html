@@ -200,7 +200,7 @@
         <div class="profile-container">
             <div class="profile-sidebar">
                 <div class="profile-header">
-                    <img src="https://ui-avatars.com/api/?name=User+Name&background=3498db&color=fff" alt="User Avatar" class="profile-avatar">
+                    <img src="images/logo.jpg" alt="User Avatar" class="profile-avatar">
                     <h2 class="profile-name">Ramesh Kumar</h2>
                 </div>
                 
@@ -209,54 +209,137 @@
                     <li><a href="#address"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
                     <li><a href="#orders"><i class="fas fa-history"></i> Order History</a></li>
                     <li><a href="#family"><i class="fas fa-users"></i> Family Details</a></li>
-                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-                    <li><a href="/index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a href="/index.html"><i class="fas fa-sign-out-alt" style="color: red;"></i><b style="color: red;"> Logout</b></a></li>
                 </ul>
             </div>
             
             <div class="profile-content">
                 <div id="personal" class="profile-section">
                     <h3>Personal Information</h3>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">Full Name</div>
-                            <div class="info-value">Ramesh Kumar</div>
+                    <div id="personal-display" class="form-container" style="display:block;">
+                        <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
+                            <img id="profile-pic-img" src="https://ui-avatars.com/api/?name=Ramesh+Kumar&background=3498db&color=fff" alt="Avatar" style="width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid var(--secondary);">
+                            <div>
+                                <div id="display-name" style="font-weight:600;font-size:1.15rem;">Ramesh Kumar</div>
+                                <div id="display-ration" style="color:var(--text-light);">KA-BLR-1234567</div>
+                                <div id="display-phone" style="margin-top:0.25rem;">9876543210</div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-label">Ration Card Number</div>
-                            <div class="info-value">KA-BLR-1234567</div>
+
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Full Name</div>
+                                <div class="info-value" id="display-fullname">Ramesh Kumar</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Ration Card Number</div>
+                                <div class="info-value" id="display-rationcard">KA-BLR-1234567</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Phone Number</div>
+                                <div class="info-value" id="display-phone2">9876543210</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Email Address</div>
+                                <div class="info-value" id="display-email">ramesh.kumar@gmail.com</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Date of Birth</div>
+                                <div class="info-value" id="display-dob">15/08/1985</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Category</div>
+                                <div class="info-value" id="display-category">BPL (Below Poverty Line)</div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-label">Phone Number</div>
-                            <div class="info-value">9876543210</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Email Address</div>
-                            <div class="info-value">ramesh.kumar@gmail.com</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Date of Birth</div>
-                            <div class="info-value">15/08/1985</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Category</div>
-                            <div class="info-value">BPL (Below Poverty Line)</div>
+                        <div style="margin-top:1rem;">
+                            <button id="edit-personal-btn" class="btn">Edit Profile</button>
                         </div>
                     </div>
-                </div>
+
+                    <form id="personal-form" class="form-container" style="display:none;border:1px solid #eee;padding:0.75rem;border-radius:6px;">
+                        <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem;">
+                            <img id="profile-pic-preview" src="https://ui-avatars.com/api/?name=Ramesh+Kumar&background=3498db&color=fff" alt="Preview" style="width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid var(--secondary);">
+                            <div style="flex:1;">
+                                <label class="info-label">Change Profile Photo</label>
+                                <input id="profile-pic-input" type="file" accept="image/*" class="input" style="padding:0.25rem 0;" />
+                                <div style="color:var(--text-light);font-size:0.9rem;margin-top:0.25rem;">Max 1MB. Will be stored locally for demo.</div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <label class="info-label" for="pf-name">Full Name</label>
+                            <input id="pf-name" class="input" style="width:100%; padding:0.5rem;" />
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label" for="pf-ration">Ration Card Number</label>
+                            <input id="pf-ration" class="input" style="width:100%; padding:0.5rem;" />
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label" for="pf-phone">Phone Number</label>
+                            <input id="pf-phone" class="input" style="width:100%; padding:0.5rem;" />
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label" for="pf-email">Email Address</label>
+                            <input id="pf-email" class="input" style="width:100%; padding:0.5rem;" />
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label" for="pf-dob">Date of Birth</label>
+                            <input id="pf-dob" type="date" class="input" style="width:100%; padding:0.5rem;" />
+                        </div>
+                        <div class="info-item">
+                            <label class="info-label" for="pf-category">Category</label>
+                            <select id="pf-category" class="input" style="width:100%; padding:0.5rem;">
+                                <option>BPL (Below Poverty Line)</option>
+                                <option>AAY</option>
+                                <option>Antyodaya</option>
+                                <option>Regular</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-top:1rem;">
+                            <button type="button" id="save-personal-btn" class="btn">Save</button>
+                            <button type="button" id="cancel-personal-btn" class="btn" style="background:#ccc;color:#000;margin-left:0.5rem;">Cancel</button>
+                        </div>
+                    </form>
+                 </div>
                 
                 <div id="address" class="profile-section">
                     <h3>Delivery Addresses</h3>
                     <div class="form-container">
-                        <div class="info-item">
-                            <div class="info-label">Primary Address</div>
-                            <div class="info-value">
-                                123, 4th Cross, Rajajinagar<br>
-                                Bangalore - 560010<br>
-                                Karnataka
-                            </div>
+                        <div id="addresses-list" class="info-item" style="margin-bottom:0.5rem;">
                         </div>
-                        <button class="btn" style="margin-top: 1rem;">Edit Address</button>
+
+                        <button id="add-address-btn" class="btn" style="margin-top: 1rem;">+ Add New Address</button>
+
+                        <form id="address-form" style="display:none; margin-top: 0.5rem; border:1px solid #eee; padding:0.75rem; border-radius:6px;">
+                            <input type="hidden" id="addr-index" value="-1" />
+                            <div class="info-item">
+                                <label class="info-label" for="addr-line">Address Line</label>
+                                <input id="addr-line" name="line" class="input" style="width:100%; padding:0.5rem;" placeholder="House / street / locality" />
+                            </div>
+                            <div class="info-item">
+                                <label class="info-label" for="addr-city">City</label>
+                                <input id="addr-city" name="city" class="input" style="width:100%; padding:0.5rem;" placeholder="City" />
+                            </div>
+                            <div class="info-item">
+                                <label class="info-label" for="addr-pincode">Pincode</label>
+                                <input id="addr-pincode" name="pincode" class="input" style="width:100%; padding:0.5rem;" placeholder="5600XX" />
+                            </div>
+                            <div class="info-item">
+                                <label class="info-label" for="addr-state">State</label>
+                                <input id="addr-state" name="state" class="input" style="width:100%; padding:0.5rem;" placeholder="State" />
+                            </div>
+
+                            <div style="margin-top:1rem;">
+                                <button type="button" id="save-address-btn" class="btn">Save</button>
+                                <button type="button" id="cancel-address-btn" class="btn" style="background:#ccc;color:#000;margin-left:0.5rem;">Cancel</button>
+                            </div>
+                        </form>
+
+                        <div id="address-actions" style="margin-top:0.5rem; color:var(--text-light); font-size:0.9rem;">
+                            Tip: Set a primary address so orders default to it. You can add multiple addresses.
+                        </div>
                     </div>
                 </div>
                 
@@ -269,7 +352,7 @@
                                 <span class="order-date">15 Aug 2023</span>
                             </div>
                             <div>
-                                <span class="order-status status-delivered">Delivered</span>
+                                <span class="order-status status_delivered">Delivered</span>
                             </div>
                             <div class="order-items">Rice (5kg), Wheat (4kg), Sugar (2kg), Oil (1L)</div>
                             <div class="order-total">Total: ₹480</div>
@@ -281,7 +364,7 @@
                                 <span class="order-date">01 Aug 2023</span>
                             </div>
                             <div>
-                                <span class="order-status status-delivered">Delivered</span>
+                                <span class="order-status status_delivered">Delivered</span>
                             </div>
                             <div class="order-items">Rice (5kg), Toor Dal (2kg), Salt (1kg)</div>
                             <div class="order-total">Total: ₹350</div>
@@ -333,6 +416,301 @@
     <footer>
         <p>&copy; 2025 Namma Ration. All rights reserved.</p>
     </footer>
+
+    <script>
+        (function () {
+            const KEY = 'nr_profile';
+
+            function escapeHtml(str){ return String(str || ''); }
+
+            function defaultProfile(){
+                return {
+                    name: 'Ramesh Kumar',
+                    ration: 'KA-BLR-1234567',
+                    phone: '9876543210',
+                    email: 'ramesh.kumar@gmail.com',
+                    dob: '1985-08-15',
+                    category: 'BPL (Below Poverty Line)',
+                    avatar: '' 
+                };
+            }
+
+            function loadProfile(){
+                try{
+                    const raw = localStorage.getItem(KEY);
+                    return raw ? JSON.parse(raw) : defaultProfile();
+                }catch(e){ return defaultProfile(); }
+            }
+
+            function saveProfile(p){
+                localStorage.setItem(KEY, JSON.stringify(p));
+            }
+
+            function renderProfile(){
+                const p = loadProfile();
+                document.getElementById('profile-pic-img').src = p.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=3498db&color=fff`;
+                document.getElementById('profile-pic-preview').src = p.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=3498db&color=fff`;
+                document.getElementById('display-name').textContent = p.name;
+                document.getElementById('display-ration').textContent = p.ration;
+                document.getElementById('display-phone').textContent = p.phone;
+                document.getElementById('display-fullname').textContent = p.name;
+                document.getElementById('display-rationcard').textContent = p.ration;
+                document.getElementById('display-phone2').textContent = p.phone;
+                document.getElementById('display-email').textContent = p.email;
+                document.getElementById('display-dob').textContent = (p.dob ? new Date(p.dob).toLocaleDateString() : '');
+                document.getElementById('display-category').textContent = p.category;
+            }
+
+            function fillForm(){
+                const p = loadProfile();
+                document.getElementById('pf-name').value = p.name || '';
+                document.getElementById('pf-ration').value = p.ration || '';
+                document.getElementById('pf-phone').value = p.phone || '';
+                document.getElementById('pf-email').value = p.email || '';
+                document.getElementById('pf-dob').value = p.dob || '';
+                document.getElementById('pf-category').value = p.category || '';
+                document.getElementById('profile-pic-preview').src = p.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=3498db&color=fff`;
+            }
+
+            function openForm(){
+                document.getElementById('personal-display').style.display = 'none';
+                document.getElementById('personal-form').style.display = 'block';
+                fillForm();
+            }
+            function closeForm(){
+                document.getElementById('personal-form').style.display = 'none';
+                document.getElementById('personal-display').style.display = 'block';
+            }
+
+            document.addEventListener('change', function(e){
+                const t = e.target;
+                if (t && t.id === 'profile-pic-input' && t.files && t.files[0]){
+                    const file = t.files[0];
+                    if (file.size > 1024*1024) { alert('Image too large (max 1MB).'); return; }
+                    const reader = new FileReader();
+                    reader.onload = function(ev){
+                        document.getElementById('profile-pic-preview').src = ev.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            document.addEventListener('click', function(e){
+                const t = e.target;
+                if (!t) return;
+                if (t.id === 'edit-personal-btn') { openForm(); return; }
+                if (t.id === 'cancel-personal-btn') { closeForm(); return; }
+                if (t.id === 'save-personal-btn') {
+                    const p = loadProfile();
+                    p.name = document.getElementById('pf-name').value.trim() || p.name;
+                    p.ration = document.getElementById('pf-ration').value.trim() || p.ration;
+                    p.phone = document.getElementById('pf-phone').value.trim() || p.phone;
+                    p.email = document.getElementById('pf-email').value.trim() || p.email;
+                    p.dob = document.getElementById('pf-dob').value || p.dob;
+                    p.category = document.getElementById('pf-category').value || p.category;
+                    const previewSrc = document.getElementById('profile-pic-preview').src;
+                    if (previewSrc && previewSrc.indexOf('data:') === 0) p.avatar = previewSrc;
+                    saveProfile(p);
+                    renderProfile();
+                    closeForm();
+                    const tEl = document.getElementById('toast');
+                    if (tEl) { tEl.textContent = 'Profile saved'; tEl.style.display='block'; setTimeout(()=>tEl.style.display='none',1500); }
+                }
+            });
+
+            document.addEventListener('DOMContentLoaded', function(){ renderProfile(); });
+        })();
+    </script>
+    <script>
+        (function () {
+            const STORAGE_KEY = 'nr_addresses';
+            const defaultAddrList = [
+                {
+                    line: '123, 4th Cross, Rajajinagar',
+                    city: 'Bangalore',
+                    pincode: '560010',
+                    state: 'Karnataka',
+                    primary: true
+                }
+            ];
+
+            function showToast(msg, ms = 2000) {
+                const t = document.getElementById('toast');
+                if (!t) return;
+                t.textContent = msg;
+                t.style.display = 'block';
+                clearTimeout(t._timer);
+                t._timer = setTimeout(() => (t.style.display = 'none'), ms);
+            }
+
+            function escapeHtml(str) {
+                return String(str || '').replace(/[&<>"']/g, function (m) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+                });
+            }
+
+            function loadAddresses() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    const arr = raw ? JSON.parse(raw) : null;
+                    if (!Array.isArray(arr) || arr.length === 0) return defaultAddrList.slice();
+                    return arr;
+                } catch (e) {
+                    return defaultAddrList.slice();
+                }
+            }
+
+            function saveAddresses(list) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+            }
+
+            function renderAddressList() {
+                const wrap = document.getElementById('addresses-list');
+                const addBtn = document.getElementById('add-address-btn');
+                if (!wrap || !addBtn) return;
+                const list = loadAddresses();
+                wrap.innerHTML = '';
+                list.forEach((a, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'address-card';
+                    div.style = 'border:1px solid #f0f0f0;padding:0.6rem;border-radius:6px;margin-bottom:0.6rem;display:flex;justify-content:space-between;align-items:flex-start;';
+                    const left = document.createElement('div');
+                    left.style.maxWidth = '72%';
+                    left.innerHTML = `<div style="font-weight:600;">${escapeHtml(a.line)}</div>
+                                      <div style="color:var(--text-light);">${escapeHtml(a.city)} - ${escapeHtml(a.pincode || '')}</div>
+                                      <div style="color:var(--text-light);">${escapeHtml(a.state || '')}</div>`;
+                    const right = document.createElement('div');
+                    right.style.textAlign = 'right';
+                    right.innerHTML = `
+                        ${a.primary ? '<div style="background:var(--secondary);color:#fff;padding:0.2rem 0.4rem;border-radius:12px;font-size:0.8rem;margin-bottom:6px;display:inline-block;">Primary</div>' : ''}
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <button class="btn small" data-action="edit" data-idx="${idx}" style="padding:0.3rem 0.5rem;">Edit</button>
+                            <button class="btn small" data-action="set-primary" data-idx="${idx}" style="padding:0.3rem 0.5rem;${a.primary ? 'display:none;' : ''}">Set Primary</button>
+                            <button class="btn small" data-action="copy" data-idx="${idx}" style="padding:0.3rem 0.5rem;">Copy</button>
+                            <button class="btn small" data-action="delete" data-idx="${idx}" style="padding:0.3rem 0.5rem;background:#f8d7da;color:#721c24;">Delete</button>
+                        </div>`;
+                    div.appendChild(left);
+                    div.appendChild(right);
+                    wrap.appendChild(div);
+                });
+
+                if (list.length === 0) {
+                    wrap.innerHTML = '<div style="color:var(--text-light)">No addresses found. Add one to get started.</div>';
+                }
+            }
+
+            function openForm(addr = null, idx = -1) {
+                document.getElementById('address-form').style.display = 'block';
+                document.getElementById('addr-index').value = String(idx);
+                document.getElementById('addr-line').value = addr ? addr.line : '';
+                document.getElementById('addr-city').value = addr ? addr.city : '';
+                document.getElementById('addr-pincode').value = addr ? (addr.pincode || '') : '';
+                document.getElementById('addr-state').value = addr ? addr.state : '';
+                setTimeout(() => {
+                    document.getElementById('address-form').scrollIntoView({behavior:'smooth', block:'center'});
+                }, 50);
+            }
+
+            function closeForm() {
+                document.getElementById('address-form').style.display = 'none';
+                document.getElementById('addr-index').value = '-1';
+            }
+
+            document.addEventListener('click', function (e) {
+                const target = e.target;
+                if (!target) return;
+
+                if (target.id === 'add-address-btn') {
+                    openForm(null, -1);
+                    return;
+                }
+
+                if (target.id === 'cancel-address-btn') {
+                    closeForm();
+                    return;
+                }
+
+                if (target.id === 'save-address-btn') {
+                    const idx = parseInt(document.getElementById('addr-index').value, 10);
+                    const addr = {
+                        line: document.getElementById('addr-line').value.trim(),
+                        city: document.getElementById('addr-city').value.trim(),
+                        pincode: document.getElementById('addr-pincode').value.trim(),
+                        state: document.getElementById('addr-state').value.trim(),
+                        primary: false
+                    };
+                    if (!addr.line || !addr.city || !addr.pincode) {
+                        alert('Please fill address, city and pincode.');
+                        return;
+                    }
+                    const list = loadAddresses();
+                    if (idx >= 0 && idx < list.length) {
+                        addr.primary = list[idx].primary || false;
+                        list[idx] = addr;
+                        showToast('Address updated');
+                    } else {
+                        if (list.length === 0) addr.primary = true;
+                        list.push(addr);
+                        showToast('Address added');
+                    }
+                    saveAddresses(list);
+                    renderAddressList();
+                    closeForm();
+                    return;
+                }
+
+                const actionBtn = target.closest('button[data-action]');
+                if (actionBtn) {
+                    const action = actionBtn.getAttribute('data-action');
+                    const idx = parseInt(actionBtn.getAttribute('data-idx'), 10);
+                    const list = loadAddresses();
+                    if (Number.isNaN(idx) || idx < 0 || idx >= list.length) return;
+
+                    if (action === 'edit') {
+                        openForm(list[idx], idx);
+                        return;
+                    }
+                    if (action === 'delete') {
+                        if (!confirm('Delete this address?')) return;
+                        list.splice(idx, 1);
+                        if (!list.some(a => a.primary) && list.length > 0) list[0].primary = true;
+                        saveAddresses(list);
+                        renderAddressList();
+                        showToast('Address deleted');
+                        return;
+                    }
+                    if (action === 'set-primary') {
+                        list.forEach((a, i) => a.primary = (i === idx));
+                        saveAddresses(list);
+                        renderAddressList();
+                        showToast('Primary address updated');
+                        return;
+                    }
+                    if (action === 'copy') {
+                        const a = list[idx];
+                        const text = `${a.line}, ${a.city} - ${a.pincode}, ${a.state}`;
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(text).then(() => showToast('Address copied to clipboard'));
+                        } else {
+                            const ta = document.createElement('textarea');
+                            ta.value = text;
+                            document.body.appendChild(ta);
+                            ta.select();
+                            try { document.execCommand('copy'); showToast('Address copied to clipboard'); } catch (e) { alert(text); }
+                            ta.remove();
+                        }
+                        return;
+                    }
+                }
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                renderAddressList();
+                const cancelBtn = document.getElementById('cancel-address-btn');
+                if (cancelBtn) cancelBtn.addEventListener('click', closeForm);
+            });
+        })();
+    </script>
 
     <script src="scripts/script.js"></script>
     <script src="scripts/search.js"></script>
