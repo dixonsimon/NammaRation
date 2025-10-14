@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
-    <title>Namma Ration - Login/Register</title>
+    <title>Namma Ration - Sign-in</title>
     <style>
         :root {
             --primary: #3498db;
@@ -327,7 +327,6 @@
                     <button class="toggle-btn" id="register-toggle">Register</button>
                 </div>
                 
-                <!-- Login Form -->
                 <div class="form-section active" id="login-form-section">
                     <form id="login-form">
                         <div class="form-row">
@@ -344,7 +343,6 @@
                     </form>
                 </div>
                 
-                <!-- Registration Form -->
                 <div class="form-section" id="register-form-section">
                     <form id="register-form">
                         <div class="form-row half">
@@ -417,7 +415,6 @@
     </footer>
 
     <script>
-        // Toggle between login and registration forms
         document.getElementById('login-toggle').addEventListener('click', function() {
             document.getElementById('login-toggle').classList.add('active');
             document.getElementById('register-toggle').classList.remove('active');
@@ -432,7 +429,6 @@
             document.getElementById('login-form-section').classList.remove('active');
         });
 
-        // Login form submission
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -457,7 +453,6 @@
             window.location.href = 'home.html';
         });
 
-        // Registration form submission
         document.getElementById('register-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -469,7 +464,6 @@
             const familySize = document.getElementById('family-size').value;
             const income = document.getElementById('income').value;
             
-            // Validation
             if (firstName.length < 2) {
                 alert('Please enter a valid first name');
                 return;
@@ -505,7 +499,6 @@
                 return;
             }
             
-            // Store registration data
             localStorage.setItem('userInfo', JSON.stringify({
                 firstName,
                 lastName,
@@ -518,10 +511,8 @@
             
             alert('Registration successful! You can now login with your credentials.');
             
-            // Switch to login form
             document.getElementById('login-toggle').click();
             
-            // Pre-fill login form
             document.getElementById('ration-card').value = rationCard;
             document.getElementById('phone').value = phone;
         });
