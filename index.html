@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="images/logo.jpg"/>
-    <title>Namma Ration - Login</title>
+    <title>Namma Ration - Login/Register</title>
     <style>
         :root {
             --primary: #3498db;
@@ -56,6 +56,7 @@
             align-items: center;
             justify-content: center;
             flex: 1;
+            margin-top: 7rem;
         }
 
         .login-card {
@@ -105,7 +106,7 @@
             color: var(--dark);
         }
         
-        .form-row input {
+        .form-row input, .form-row select {
             width: 100%;
             padding: 0.8rem 1.2rem;
             border: 1px solid #ddd;
@@ -114,7 +115,7 @@
             transition: var(--transition);
         }
         
-        .form-row input:focus {
+        .form-row input:focus, .form-row select:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
@@ -172,7 +173,55 @@
             color: white;
             width: 100%;
             max-width: 1200px;
-            margin-top: 2rem;
+            margin-top: 1rem;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            background-color: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .toggle-btn.active {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .toggle-btn:not(.active):hover {
+            background-color: #e9ecef;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-row.half {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row.half > div {
+            flex: 1;
         }
 
         @media (max-width: 992px) {
@@ -209,6 +258,11 @@
             .login-title {
                 margin-top: 1rem;
             }
+
+            .form-row.half {
+                flex-direction: column;
+                gap: 0;
+            }
         }
 
         @media (max-width: 576px) {
@@ -229,7 +283,7 @@
                 font-size: 1.4rem;
             }
             
-            .form-row input {
+            .form-row input, .form-row select {
                 padding: 0.7rem 1rem;
             }
             
@@ -238,6 +292,11 @@
             }
             
             .features li {
+                font-size: 0.9rem;
+            }
+
+            .toggle-btn {
+                padding: 0.6rem 0.8rem;
                 font-size: 0.9rem;
             }
         }
@@ -251,29 +310,93 @@
     <div class="login-container">
         <div class="login-card">
             <div class="login-form">
-                <h2 class="login-title">Login to Namma Ration</h2>
-                <form id="login-form">
-                    <div class="form-row">
-                        <label for="ration-card"><i class="fas fa-address-card"></i> Ration Card Number</label>
-                        <input type="text" id="ration-card" placeholder="Enter your ration card number" required>
-                    </div>
-                    <div class="form-row">
-                        <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
-                    </div>
-                    <div class="btn-container">
-                        <button type="submit" class="btn">Login</button>
-                    </div>
-                </form>
+                <h2 class="login-title">Welcome to Namma Ration</h2>
+                
+                <div class="toggle-container">
+                    <button class="toggle-btn active" id="login-toggle">Login</button>
+                    <button class="toggle-btn" id="register-toggle">Register</button>
+                </div>
+                
+                <!-- Login Form -->
+                <div class="form-section active" id="login-form-section">
+                    <form id="login-form">
+                        <div class="form-row">
+                            <label for="ration-card"><i class="fas fa-address-card"></i> Ration Card Number</label>
+                            <input type="text" id="ration-card" placeholder="Enter your ration card number" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="btn-container">
+                            <button type="submit" class="btn">Login</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Registration Form -->
+                <div class="form-section" id="register-form-section">
+                    <form id="register-form">
+                        <div class="form-row half">
+                            <div>
+                                <label for="first-name"><i class="fas fa-user"></i> First Name</label>
+                                <input type="text" id="first-name" placeholder="Enter your first name" required>
+                            </div>
+                            <div>
+                                <label for="last-name"><i class="fas fa-user"></i> Last Name</label>
+                                <input type="text" id="last-name" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="register-ration-card"><i class="fas fa-address-card"></i> Ration Card Number</label>
+                            <input type="text" id="register-ration-card" placeholder="Enter your ration card number" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="register-phone"><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="register-phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="address"><i class="fas fa-home"></i> Address</label>
+                            <input type="text" id="address" placeholder="Enter your complete address" required>
+                        </div>
+                        <div class="form-row half">
+                            <div>
+                                <label for="family-size"><i class="fas fa-users"></i> Family Size</label>
+                                <select id="family-size" required>
+                                    <option value="">Select family size</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="income"><i class="fas fa-rupee-sign"></i> Annual Income</label>
+                                <select id="income" required>
+                                    <option value="">Select income range</option>
+                                    <option value="below-1l">Below ₹1 Lakh</option>
+                                    <option value="1-2l">₹1-2 Lakhs</option>
+                                    <option value="2-3l">₹2-3 Lakhs</option>
+                                    <option value="above-3l">Above ₹3 Lakhs</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="btn-container">
+                            <button type="submit" class="btn">Register</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="login-banner">
-                <h2 class="banner-title">Welcome to Namma Ration</h2>
-                <p>Your digital solution for ration supplies</p>
+                <h2 class="banner-title">Your Digital Ration Solution</h2>
+                <p>Access quality ration supplies with convenience</p>
                 <ul class="features">
                     <li><i class="fas fa-truck"></i> Free Home Delivery</li>
                     <li><i class="fas fa-check-circle"></i> Quality Assured Products</li>
                     <li><i class="fas fa-rupee-sign"></i> Subsidized Prices</li>
                     <li><i class="fas fa-clock"></i> Easy and Convenient</li>
+                    <li><i class="fas fa-shield-alt"></i> Secure & Reliable</li>
                 </ul>
             </div>
         </div>
@@ -284,6 +407,22 @@
     </footer>
 
     <script>
+        // Toggle between login and registration forms
+        document.getElementById('login-toggle').addEventListener('click', function() {
+            document.getElementById('login-toggle').classList.add('active');
+            document.getElementById('register-toggle').classList.remove('active');
+            document.getElementById('login-form-section').classList.add('active');
+            document.getElementById('register-form-section').classList.remove('active');
+        });
+
+        document.getElementById('register-toggle').addEventListener('click', function() {
+            document.getElementById('register-toggle').classList.add('active');
+            document.getElementById('login-toggle').classList.remove('active');
+            document.getElementById('register-form-section').classList.add('active');
+            document.getElementById('login-form-section').classList.remove('active');
+        });
+
+        // Login form submission
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -306,6 +445,75 @@
             }));
             
             window.location.href = 'home.html';
+        });
+
+        // Registration form submission
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const rationCard = document.getElementById('register-ration-card').value;
+            const phone = document.getElementById('register-phone').value;
+            const address = document.getElementById('address').value;
+            const familySize = document.getElementById('family-size').value;
+            const income = document.getElementById('income').value;
+            
+            // Validation
+            if (firstName.length < 2) {
+                alert('Please enter a valid first name');
+                return;
+            }
+            
+            if (lastName.length < 2) {
+                alert('Please enter a valid last name');
+                return;
+            }
+            
+            if (rationCard.length < 5) {
+                alert('Please enter a valid ration card number');
+                return;
+            }
+            
+            if (phone.length !== 10 || isNaN(phone)) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+            
+            if (address.length < 10) {
+                alert('Please enter a complete address');
+                return;
+            }
+            
+            if (!familySize) {
+                alert('Please select your family size');
+                return;
+            }
+            
+            if (!income) {
+                alert('Please select your income range');
+                return;
+            }
+            
+            // Store registration data
+            localStorage.setItem('userInfo', JSON.stringify({
+                firstName,
+                lastName,
+                rationCard,
+                phone,
+                address,
+                familySize,
+                income
+            }));
+            
+            alert('Registration successful! You can now login with your credentials.');
+            
+            // Switch to login form
+            document.getElementById('login-toggle').click();
+            
+            // Pre-fill login form
+            document.getElementById('ration-card').value = rationCard;
+            document.getElementById('phone').value = phone;
         });
     </script>
 </body>
