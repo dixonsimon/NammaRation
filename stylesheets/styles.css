@@ -389,6 +389,36 @@ footer {
 
 .empty-cart-message {
     text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-cart-message p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.continue-shopping-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: -10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.continue-shopping-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.continue-shopping-btn i {
+    margin-right: 8px;
 }
 
 .quantity-controls {
