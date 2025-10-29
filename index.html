@@ -434,7 +434,6 @@
 
     <script>
         function validateRationCard(rationCard) {
-            // Check if the input contains exactly 8 numbers
             if (!/^[0-9]{8}$/.test(rationCard)) {
                 return false;
             }
@@ -466,7 +465,6 @@
                 return;
             }
             
-            // When storing, combine BTL with the number
             const fullRationCard = 'BTL' + rationCardNumber;
             
             localStorage.setItem('userInfo', JSON.stringify({
