@@ -331,7 +331,16 @@
                     <form id="login-form">
                         <div class="form-row">
                             <label for="ration-card"><i class="fas fa-address-card"></i> Ration Card Number</label>
-                            <input type="text" id="ration-card" placeholder="Enter your ration card number" required>
+                            <div style="display: flex; align-items: center;">
+                                <span style="padding: 0.8rem 1.2rem; background-color: #e9ecef; border: 1px solid #ddd; border-right: none; border-radius: 5px 0 0 5px;">BTL</span>
+                                <input type="text" id="ration-card" 
+                                       style="border-radius: 0 5px 5px 0;"
+                                       placeholder="Enter 8 digit number" 
+                                       maxlength="8"
+                                       pattern="[0-9]{8}"
+                                       title="Please enter 8 numbers"
+                                       required>
+                            </div>
                         </div>
                         <div class="form-row">
                             <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
@@ -357,7 +366,16 @@
                         </div>
                         <div class="form-row">
                             <label for="register-ration-card"><i class="fas fa-address-card"></i> Ration Card Number</label>
-                            <input type="text" id="register-ration-card" placeholder="Enter your ration card number" required>
+                            <div style="display: flex; align-items: center;">
+                                <span style="padding: 0.8rem 1.2rem; background-color: #e9ecef; border: 1px solid #ddd; border-right: none; border-radius: 5px 0 0 5px;">BTL</span>
+                                <input type="text" id="register-ration-card" 
+                                       style="border-radius: 0 5px 5px 0;"
+                                       placeholder="Enter 8 digit number" 
+                                       maxlength="8"
+                                       pattern="[0-9]{8}"
+                                       title="Please enter 8 numbers"
+                                       required>
+                            </div>
                         </div>
                         <div class="form-row">
                             <label for="register-phone"><i class="fas fa-phone"></i> Phone Number</label>
@@ -415,6 +433,14 @@
     </footer>
 
     <script>
+        function validateRationCard(rationCard) {
+            // Check if the input contains exactly 8 numbers
+            if (!/^[0-9]{8}$/.test(rationCard)) {
+                return false;
+            }
+            return true;
+        }
+
         document.getElementById('login-toggle').addEventListener('click', function() {
             document.getElementById('login-toggle').classList.add('active');
             document.getElementById('register-toggle').classList.remove('active');
@@ -432,21 +458,19 @@
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const rationCard = document.getElementById('ration-card').value;
+            const rationCardNumber = document.getElementById('ration-card').value;
             const phone = document.getElementById('phone').value;
             
-            if (rationCard.length < 5) {
-                alert('Please enter a valid ration card number');
+            if (!validateRationCard(rationCardNumber)) {
+                alert('Please enter valid 8 digits for ration card number');
                 return;
             }
             
-            if (phone.length !== 10 || isNaN(phone)) {
-                alert('Please enter a valid 10-digit phone number');
-                return;
-            }
+            // When storing, combine BTL with the number
+            const fullRationCard = 'BTL' + rationCardNumber;
             
             localStorage.setItem('userInfo', JSON.stringify({
-                rationCard,
+                rationCard: fullRationCard,
                 phone
             }));
             
@@ -458,7 +482,7 @@
             
             const firstName = document.getElementById('first-name').value;
             const lastName = document.getElementById('last-name').value;
-            const rationCard = document.getElementById('register-ration-card').value;
+            const rationCardNumber = document.getElementById('register-ration-card').value;
             const phone = document.getElementById('register-phone').value;
             const address = document.getElementById('address').value;
             const familySize = document.getElementById('family-size').value;
@@ -474,35 +498,18 @@
                 return;
             }
             
-            if (rationCard.length < 5) {
-                alert('Please enter a valid ration card number');
+            if (!validateRationCard(rationCardNumber)) {
+                alert('Please enter valid 8 digits for ration card number');
                 return;
             }
             
-            if (phone.length !== 10 || isNaN(phone)) {
-                alert('Please enter a valid 10-digit phone number');
-                return;
-            }
-            
-            if (address.length < 10) {
-                alert('Please enter a complete address');
-                return;
-            }
-            
-            if (!familySize) {
-                alert('Please select your family size');
-                return;
-            }
-            
-            if (!income) {
-                alert('Please select your income range');
-                return;
-            }
+            // When storing, combine BTL with the number
+            const fullRationCard = 'BTL' + rationCardNumber;
             
             localStorage.setItem('userInfo', JSON.stringify({
                 firstName,
                 lastName,
-                rationCard,
+                rationCard: fullRationCard,
                 phone,
                 address,
                 familySize,
@@ -513,7 +520,7 @@
             
             document.getElementById('login-toggle').click();
             
-            document.getElementById('ration-card').value = rationCard;
+            document.getElementById('ration-card').value = rationCardNumber;
             document.getElementById('phone').value = phone;
         });
     </script>
