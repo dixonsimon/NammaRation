@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 1,
             name: "Arborio Rice",
-            price: 65,
+            price: 20,
             image: "https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c=",
             category: "rice",
             link: "product-arborio-rice.html"
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 2,
             name: "Basmati Rice",
-            price: 85,
+            price: 30,
             image: "https://tse1.mm.bing.net/th/id/OIP.jq7GRp6cLYbHxk9TY7KzqQHaF7?rs=1&pid=ImgDetMain&o=7&rm=3",
             category: "rice",
             link: "product-basmati-rice.html"
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 3,
             name: "Masoor Dal",
-            price: 120,
+            price: 30,
             image: "https://tiimg.tistatic.com/fp/1/007/565/100-pure-raw-organic-yellow-toor-dal-for-cooking-uses-648.jpg",
             category: "dal",
             link: "product-masoor-dal.html"
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 4,
             name: "Toor Dal",
-            price: 110,
+            price: 50,
             image: "https://tse3.mm.bing.net/th/id/OIP.VUILLm1dh2QfP4uV_SrasAHaHZ?rs=1&pid=ImgDetMain&o=7&rm=3",
             category: "dal",
             link: "product-toor-dal.html"
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 5,
             name: "Sunflower Oil",
-            price: 180,
+            price: 85,
             image: "https://naturelandorganics.com/cdn/shop/articles/organic-sunflower-oil-Natureland_organics_1200x1200.jpg?v=1673681164",
             category: "oil",
             link: "product-sunflower-oil.html"
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 6,
             name: "Mustard Oil",
-            price: 160,
+            price: 90,
             image: "https://img.freepik.com/premium-photo/mustard-oil-with-flower-white-background_525574-3245.jpg?w=2000",
             category: "oil",
             link: "product-mustard-oil.html"
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 7,
             name: "Bathing Soap",
-            price: 25,
+            price: 15,
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpBhsNbkrw-qzAFle7GzIOUES6avcxxckLcw&s",
             category: "soap",
             link: "product-bathing-soap.html"
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 8,
             name: "Detergent Soap",
-            price: 30,
+            price: 10,
             image: "https://tse4.mm.bing.net/th/id/OIP.eKqg9wIdSkRcGedOcPAutgHaHI?w=720&h=693&rs=1&pid=ImgDetMain&o=7&rm=3",
             category: "soap",
             link: "product-detergent-soap.html"
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 9,
             name: "Iodized Salt",
-            price: 20,
+            price: 12,
             image: "https://t3.ftcdn.net/jpg/02/94/34/76/360_F_294347652_W3RKypPIHGpnEtGn72J5pC9by14bFntb.jpg",
             category: "salt",
             link: "product-salt.html"
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 10,
             name: "Sugar",
-            price: 45,
+            price: 15,
             image: "https://img.freepik.com/free-photo/world-diabetes-day-sugar-wooden-bowl-dark-surface_1150-26666.jpg",
             category: "sugar",
             link: "product-sugar.html"
