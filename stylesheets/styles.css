@@ -860,8 +860,9 @@ footer {
 
 .social-links {
     display: flex;
-    gap: 1rem;
+    gap: 5.5rem;
     margin-top: 1.5rem;
+    margin-left: 8px;
 }
 
 .social-links a {
