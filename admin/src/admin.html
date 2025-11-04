@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/7/78/Microsoft_Defender_Icon_Logo_2025_English.svg/1200px-Microsoft_Defender_Icon_Logo_2025_English.svg.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="admin.css" />
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="admin-container">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <i class="fas fa-cogs"></i>
+          <h2>Admin Panel</h2>
+        </div>
+        <div class="sidebar-menu">
+          <a href="#" class="menu-item active" data-tab="dashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="#" class="menu-item" data-tab="users">
+            <i class="fas fa-users"></i>
+            <span>User Management</span>
+          </a>
+          <a href="#" class="menu-item" data-tab="products">
+            <i class="fas fa-box"></i>
+            <span>Products</span>
+          </a>
+          <a href="#" class="menu-item" data-tab="orders">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Orders</span>
+          </a>
+          <a href="#" class="menu-item" data-tab="analytics">
+            <i class="fas fa-chart-bar"></i>
+            <span>Analytics</span>
+          </a>
+          <a href="#" class="menu-item" data-tab="settings">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+
+          <!-- Logout section -->
+          <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.03);padding-top:10px"></div>
+          <a href="#" class="menu-item logout-item" data-logout>
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="header">
+          <h1>Dashboard Overview</h1>
+          <div class="user-info">
+            <div class="user-avatar">AD</div>
+            <div>
+              <div>Admin User</div>
+              <small>Administrator</small>
+            </div>
+            <button id="logoutBtn" title="Logout" class="btn btn-sm" style="margin-left:12px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--subtext)"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+          <!-- Stats Cards -->
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">Total Revenue</div>
+                <div
+                  class="stat-card-icon"
+                  style="
+                    background: rgba(52, 152, 219, 0.2);
+                    color: var(--secondary);
+                  "
+                >
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+              </div>
+              <div class="stat-card-value">$24,580</div>
+              <div class="stat-card-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>12.5% from last month</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">Total Orders</div>
+                <div
+                  class="stat-card-icon"
+                  style="
+                    background: rgba(46, 204, 113, 0.2);
+                    color: var(--success);
+                  "
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </div>
+              </div>
+              <div class="stat-card-value">1,248</div>
+              <div class="stat-card-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>8.2% from last month</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">Customers</div>
+                <div
+                  class="stat-card-icon"
+                  style="background: rgba(155, 89, 182, 0.2); color: #9b59b6"
+                >
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+              <div class="stat-card-value">3,674</div>
+              <div class="stat-card-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>5.7% from last month</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">Products</div>
+                <div
+                  class="stat-card-icon"
+                  style="
+                    background: rgba(243, 156, 18, 0.2);
+                    color: var(--warning);
+                  "
+                >
+                  <i class="fas fa-box"></i>
+                </div>
+              </div>
+              <div class="stat-card-value">156</div>
+              <div class="stat-card-change negative">
+                <i class="fas fa-arrow-down"></i>
+                <span>2.3% from last month</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="charts-row">
+            <div class="chart-container">
+              <div class="card-header">
+                <div class="card-title">Revenue Overview</div>
+                <select class="form-control" style="width: auto">
+                  <option>Last 7 days</option>
+                  <option>Last 30 days</option>
+                  <option>Last 90 days</option>
+                </select>
+              </div>
+              <div class="chart-placeholder">
+                <canvas id="revenueChart" height="110"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-container">
+              <div class="card-header">
+                <div class="card-title">Top Products</div>
+              </div>
+              <div class="chart-placeholder">
+                <canvas id="productChart" height="110"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Orders -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Recent Orders</div>
+              <button class="btn btn-primary">View All</button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#ORD-7842</td>
+                    <td>John Smith</td>
+                    <td>Jun 15, 2023</td>
+                    <td>$128.50</td>
+                    <td><span class="status status-active">Completed</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">View</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#ORD-7841</td>
+                    <td>Sarah Johnson</td>
+                    <td>Jun 14, 2023</td>
+                    <td>$92.25</td>
+                    <td>
+                      <span class="status status-pending">Processing</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">View</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#ORD-7840</td>
+                    <td>Michael Brown</td>
+                    <td>Jun 14, 2023</td>
+                    <td>$215.75</td>
+                    <td><span class="status status-active">Completed</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">View</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#ORD-7839</td>
+                    <td>Emily Davis</td>
+                    <td>Jun 13, 2023</td>
+                    <td>$64.99</td>
+                    <td>
+                      <span class="status status-inactive">Cancelled</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">View</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="users" class="tab-content">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">User Management</div>
+              <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add User
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Last Login</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>John Smith</td>
+                    <td>john@example.com</td>
+                    <td>Admin</td>
+                    <td><span class="status status-active">Active</span></td>
+                    <td>Jun 15, 2023</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sarah Johnson</td>
+                    <td>sarah@example.com</td>
+                    <td>Customer</td>
+                    <td><span class="status status-active">Active</span></td>
+                    <td>Jun 14, 2023</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Michael Brown</td>
+                    <td>michael@example.com</td>
+                    <td>Customer</td>
+                    <td>
+                      <span class="status status-inactive">Inactive</span>
+                    </td>
+                    <td>May 28, 2023</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Emily Davis</td>
+                    <td>emily@example.com</td>
+                    <td>Manager</td>
+                    <td><span class="status status-active">Active</span></td>
+                    <td>Jun 13, 2023</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Tab -->
+        <div id="products" class="tab-content">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Product Management</div>
+              <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Product
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Arborio Rice</td>
+                    <td>Rice</td>
+                    <td>$20.00</td>
+                    <td>45</td>
+                    <td><span class="status status-active">In Stock</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Basmati Rice</td>
+                    <td>Rice</td>
+                    <td>$30.00</td>
+                    <td>32</td>
+                    <td><span class="status status-active">In Stock</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Masoor Dal</td>
+                    <td>Dal</td>
+                    <td>$30.00</td>
+                    <td>0</td>
+                    <td>
+                      <span class="status status-inactive">Out of Stock</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sunflower Oil</td>
+                    <td>Oil</td>
+                    <td>$85.00</td>
+                    <td>18</td>
+                    <td><span class="status status-active">In Stock</span></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">System Settings</div>
+            </div>
+            <div class="tabs">
+              <div class="tab active" data-settings-tab="general">General</div>
+              <div class="tab" data-settings-tab="payment">Payment</div>
+              <div class="tab" data-settings-tab="notifications">
+                Notifications
+              </div>
+            </div>
+
+            <div id="general" class="settings-tab-content active">
+              <form>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="site-name">Site Name</label>
+                    <input
+                      type="text"
+                      id="site-name"
+                      class="form-control"
+                      value="Grocery Store"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="site-url">Site URL</label>
+                    <input
+                      type="text"
+                      id="site-url"
+                      class="form-control"
+                      value="https://grocery-store.com"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="site-description">Site Description</label>
+                  <textarea id="site-description" class="form-control" rows="3">
+Your one-stop shop for all grocery needs</textarea
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="admin-email">Admin Email</label>
+                  <input
+                    type="email"
+                    id="admin-email"
+                    class="form-control"
+                    value="admin@grocery-store.com"
+                  />
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                  Save Changes
+                </button>
+              </form>
+            </div>
+
+            <div id="payment" class="settings-tab-content">
+              <form>
+                <div class="form-group">
+                  <label>Payment Methods</label>
+                  <div>
+                    <input type="checkbox" id="credit-card" checked />
+                    <label
+                      for="credit-card"
+                      style="display: inline; margin-left: 5px"
+                      >Credit Card</label
+                    >
+                  </div>
+                  <div>
+                    <input type="checkbox" id="paypal" checked />
+                    <label
+                      for="paypal"
+                      style="display: inline; margin-left: 5px"
+                      >PayPal</label
+                    >
+                  </div>
+                  <div>
+                    <input type="checkbox" id="bank-transfer" />
+                    <label
+                      for="bank-transfer"
+                      style="display: inline; margin-left: 5px"
+                      >Bank Transfer</label
+                    >
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="currency">Currency</label>
+                  <select id="currency" class="form-control">
+                    <option>USD ($)</option>
+                    <option>EUR (€)</option>
+                    <option>GBP (£)</option>
+                    <option>INR (₹)</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                  Save Changes
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="admin.js"></script>
+    <script>
+      /**
+       * Initialize dashboard charts: revenue (line) and top products (bar).
+       * - Revenue is computed from the "Total Revenue" stat-card on the page.
+       * - Product chart reads product rows from the Products table and uses price * stock as value.
+       */
+      function initDashboardCharts() {
+        // Helper to parse money like "$24,580" to number
+        function parseMoney(str) {
+          if (!str) return 0;
+          return parseFloat(String(str).replace(/[^0-9.-]+/g, '')) || 0;
+        }
+
+        // --- Revenue chart data (last 7 days) ---
+        const revenueCard = Array.from(document.querySelectorAll('.stat-card')).find(card => {
+          const title = card.querySelector('.stat-card-title');
+          return title && title.textContent.trim().toLowerCase().includes('total revenue');
+        });
+
+        const totalRevenue = revenueCard ? parseMoney(revenueCard.querySelector('.stat-card-value').textContent) : 0;
+
+        // deterministic distribution across 7 days (percentages sum to 1)
+        const dayPercents = [0.12, 0.14, 0.16, 0.18, 0.10, 0.15, 0.15];
+        const revenueData = dayPercents.map(p => Math.round(totalRevenue * p * 100) / 100);
+
+        const revenueCtx = document.getElementById('revenueChart');
+        if (revenueCtx) {
+          const labels = (function last7Days() {
+            const days = [];
+            const d = new Date();
+            for (let i = 6; i >= 0; i--) {
+              const dt = new Date(d);
+              dt.setDate(d.getDate() - i);
+              days.push(dt.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }));
+            }
+            return days;
+          })();
+
+          new Chart(revenueCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+              labels,
+              datasets: [{
+                label: 'Revenue (₹)',
+                data: revenueData,
+                borderColor: '#3498db',
+                backgroundColor: 'rgba(52,152,219,0.15)',
+                fill: true,
+                tension: 0.25,
+                pointRadius: 4
+              }]
+            },
+            options: {
+              plugins: { legend: { display: false } },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    // show simplified currency
+                    callback: value => '₹' + value.toLocaleString()
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        // --- Product chart data (from Products table) ---
+        const productsTbody = document.querySelector('#products table tbody');
+        if (!productsTbody) return;
+
+        const rows = Array.from(productsTbody.querySelectorAll('tr'));
+        const productNames = [];
+        const productValues = []; // price * stock
+
+        rows.forEach(row => {
+          const cells = row.querySelectorAll('td');
+          if (cells.length < 4) return;
+          const name = cells[0].textContent.trim();
+          const priceText = cells[2].textContent.trim();
+          const stockText = cells[3].textContent.trim();
+
+          const price = parseMoney(priceText);
+          const stock = parseInt(stockText.replace(/[^0-9]/g, '')) || 0;
+          const value = Math.round(price * stock * 100) / 100;
+
+          productNames.push(name);
+          productValues.push(value);
+        });
+
+        const productCtx = document.getElementById('productChart');
+        if (productCtx) {
+          new Chart(productCtx.getContext('2d'), {
+            type: 'bar',
+            data: {
+              labels: productNames,
+              datasets: [{
+                label: 'Inventory Value (₹)',
+                data: productValues,
+                backgroundColor: ['#f39c12','#9b59b6','#28a745','#3498db'],
+                borderRadius: 6
+              }]
+            },
+            options: {
+              plugins: { legend: { display: false } },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: { callback: v => '₹' + v.toLocaleString() }
+                }
+              }
+            }
+          });
+        }
+      }
+
+      // initialize charts when DOM ready
+      document.addEventListener('DOMContentLoaded', function () {
+        try {
+          if (typeof initDashboardCharts === 'function') {
+            initDashboardCharts();
+          }
+        } catch (err) {
+          // non-fatal: keep console info for debugging
+          console.error('Error initializing dashboard charts', err);
+        }
+      });
+    </script>
+  </body>
+</html>
