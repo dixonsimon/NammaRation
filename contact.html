@@ -16,14 +16,6 @@
             margin-bottom: 3rem;
         }
         
-        .contact-info {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            height: fit-content;
-        }
-        
         .contact-info h2 {
             color: var(--dark);
             margin-bottom: 1.5rem;
@@ -44,19 +36,6 @@
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
-        }
-        
-        .contact-icon {
-            background: var(--secondary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
         }
         
         .contact-details h3 {
@@ -96,10 +75,11 @@
         
         .day {
             font-weight: 500;
+            color: #000;
         }
         
         .time {
-            color: var(--text-light);
+            color: black;
         }
         
         .contact-form-container {
@@ -193,6 +173,13 @@
             margin-bottom: 1rem;
             color: #ccc;
         }
+
+        .business-hours h2 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
         
         /* Responsive styles */
         @media (max-width: 992px) {
@@ -218,7 +205,6 @@
                 <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
                 <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
                 <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
-                <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a>
             </div>
         </div>
     </header>
@@ -239,8 +225,8 @@
                     </div>
                     <div class="contact-details">
                         <h3>Our Location</h3>
-                        <p>123 Ration Street, Food City</p>
-                        <p>Karnataka, India - 560001</p>
+                        <p>#8, Mysore Road, Bangalore City,</p>
+                        <p>Karnataka, India - 560008.</p>
                     </div>
                 </div>
                 
@@ -267,7 +253,7 @@
                 </div>
                 
                 <div class="business-hours">
-                    <h3>Business Hours</h3>
+                    <h2>Business Hours</h2>
                     <ul class="hours-list">
                         <li>
                             <span class="day">Monday - Friday</span>
@@ -353,7 +339,7 @@
                 <ul>
                     <li><a href="home.html">Home</a></li>
                     <li><a href="cart.html">Cart</a></li>
-                    <li><a href="location.html">Store Locator</a></li>
+                    <li><a href="location.html">Add Address</a></li>
                     <li><a href="profile.html">My Account</a></li>
                 </ul>
             </div>
@@ -382,7 +368,7 @@
             <p>&copy; 2025 Namma Ration. All rights reserved.</p>
         </div>
     </footer>
-
+    
     <script>
         // Form submission handling for Formspree
         document.getElementById('contact-form').addEventListener('submit', function(e) {

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/logo.jpg"/>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
+    <title>Namma Ration - Refunds & Returns</title>
+    <style>
+        .refunds-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .policy-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .policy-section h2 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .policy-section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .policy-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-section li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .process-step {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .step-number {
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .highlight-box {
+            background: #e8f4fd;
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .contact-support {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .non-refundable {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo-transperant.png" alt="Namma Ration Logo">
+                <a href="home.html"><h1>Namma Ration</h1></a>
+            </div>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">Refunds & Returns Policy</h1>
+        <p style="text-align: center; margin-bottom: 2rem; color: var(--text-light); max-width: 700px; margin-left: auto; margin-right: auto;">
+            We strive for complete customer satisfaction. Learn about our return and refund procedures.
+        </p>
+        
+        <div class="refunds-container">
+            <div class="policy-section">
+                <h2>Return Policy Overview</h2>
+                <p>At Namma Ration, we take pride in the quality of our products and services. However, if you're not completely satisfied with your purchase, we're here to help with our straightforward return and refund policy.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Quick Summary:</strong> Most products can be returned within 24 hours of delivery if they are damaged, incorrect, or defective. Refunds are processed within 5-7 business days.</p>
+                </div>
+            </div>
+            
+            <div class="policy-section">
+                <h2>Eligibility for Returns</h2>
+                <p>You may return products under the following circumstances:</p>
+                
+                <ul>
+                    <li><strong>Damaged Products:</strong> Items that arrived broken, torn, or otherwise damaged</li>
+                    <li><strong>Incorrect Items:</strong> Products that differ from what you ordered</li>
+                    <li><strong>Expired Products:</strong> Items past their expiry date at time of delivery</li>
+                    <li><strong>Quality Issues:</strong> Products that don't meet our quality standards</li>
+                    <li><strong>Missing Items:</strong> If part of your order is missing</li>
+                </ul>
+                
+                <div class="non-refundable">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Non-Returnable Items</h3>
+                    <p>For health and safety reasons, we cannot accept returns of:</p>
+                    <ul>
+                        <li>Opened food packages (unless defective)</li>
+                        <li>Perishable items that have been delivered correctly</li>
+                        <li>Products damaged due to customer mishandling</li>
+                        <li>Items purchased more than 24 hours ago</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="policy-section">
+                <h2>Return Process</h2>
+                <p>Follow these simple steps to return a product:</p>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Report Issue</div>
+                        <p>Contact our support team within 24 hours of delivery</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Provide Details</div>
+                        <p>Share order information and photos of the issue</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Approval</div>
+                        <p>We'll review your request and approve if eligible</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Resolution</div>
+                        <p>We'll arrange pickup and process refund/replacement</p>
+                    </div>
+                </div>
+                
+                <p><strong>Note:</strong> In most cases, we'll arrange for product pickup from your delivery address at no additional cost.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>Refund Methods & Timelines</h2>
+                <p>Refunds are processed based on your original payment method:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Payment Method</th>
+                            <th>Refund Method</th>
+                            <th>Processing Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Credit/Debit Card</td>
+                            <td>Original Card</td>
+                            <td>5-7 business days</td>
+                        </tr>
+                        <tr>
+                            <td>UPI Payment</td>
+                            <td>Bank Account</td>
+                            <td>3-5 business days</td>
+                        </tr>
+                        <tr>
+                            <td>Net Banking</td>
+                            <td>Bank Account</td>
+                            <td>3-5 business days</td>
+                        </tr>
+                        <tr>
+                            <td>Digital Wallet</td>
+                            <td>Wallet Balance</td>
+                            <td>24-48 hours</td>
+                        </tr>
+                        <tr>
+                            <td>Cash on Delivery</td>
+                            <td>Bank Transfer</td>
+                            <td>3-5 business days</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Store Credit Option:</strong> For faster resolution, you may opt for store credit which is processed within 24 hours and can be used for future purchases.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>Special Cases</h2>
+                
+                <h3>Cancelled Orders</h3>
+                <p>Orders can be cancelled before they are shipped. Once an order has been shipped, it cannot be cancelled but can be returned after delivery following our standard return policy.</p>
+                
+                <h3>Failed Deliveries</h3>
+                <p>If our delivery team is unable to deliver your order after multiple attempts, the order will be cancelled and a full refund will be processed.</p>
+                
+                <h3>Quality Complaints</h3>
+                <p>For quality-related complaints, we may require you to provide photographs or retain the product for inspection by our quality team.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2>Contact for Returns</h2>
+                <p>To initiate a return or for any questions about our refund policy:</p>
+                
+                <ul>
+                    <li><strong>Phone:</strong> +91 98765 43210 (Returns Department)</li>
+                    <li><strong>Email:</strong> returns@nammaration.com</li>
+                    <li><strong>Hours:</strong> Monday-Saturday, 9 AM to 6 PM</li>
+                    <li><strong>In-App:</strong> Use the "Help & Support" section in your profile</li>
+                </ul>
+                
+                <div class="contact-support">
+                    <p>Need immediate assistance with a return?</p>
+                    <div class="btn-container">
+                        <a href="contact.html" class="btn">Contact Support Team</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="policy-section">
+                <h2>Policy Updates</h2>
+                <p>We reserve the right to modify this refund and return policy at any time. Changes will be effective immediately upon posting to the website. Material changes will be notified to registered users via email or app notification.</p>
+                
+                <p><strong>Last Updated:</strong> January 1, 2025</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Namma Ration</h3>
+                <p>Namma Ration is your trusted partner for quality ration products. We provide essential food items directly to your doorstep with convenience and reliability.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="location.html">Add Address</a></li>
+                    <li><a href="profile.html">My Account</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i>#8, Mysore Road, Bangalore City, Karnataka 560008</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@nammaration.com">info@nammaration.com</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Information</a></li>
+                    <li><a href="returns.html">Returns & Refunds</a></li>
+                    <li><a href="tos.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update cart count if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartCount = localStorage.getItem('cartCount') || 0;
+            if (cartCount > 0) {
+                document.getElementById('cart-count').textContent = cartCount;
+            }
+        });
+    </script>
+</body>
+</html>

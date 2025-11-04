@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/logo.jpg"/>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
+    <title>Namma Ration - FAQ</title>
+    <style>
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+        
+        .faq-category h2 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-question i {
+            transition: var(--transition);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .search-faq {
+            margin-bottom: 2rem;
+        }
+        
+        .search-faq input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-faq input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .contact-support {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .contact-support h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo-transperant.png" alt="Namma Ration Logo">
+                <a href="home.html"><h1>Namma Ration</h1></a>
+            </div>
+            <div class="nav-links">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-count"></span></a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">Frequently Asked Questions</h1>
+        <p style="text-align: center; margin-bottom: 2rem; color: var(--text-light); max-width: 700px; margin-left: auto; margin-right: auto;">
+            Find answers to the most common questions about our products, services, and policies.
+        </p>
+        
+        <div class="faq-container">
+            <div class="no-results" id="no-results">
+                <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: #ddd;"></i>
+                <p>No results found. Try different keywords or <a href="contact.html">contact our support team</a>.</p>
+            </div>
+            
+            <div class="faq-category">
+                <h2>Account & Registration</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I create an account?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Creating an account is simple! Click on the "Profile" link in the navigation menu, then select "Create Account". You'll need to provide your basic information, ration card details, and a valid phone number for verification.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What documents do I need to register?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You'll need your ration card number, Aadhaar card details, and a valid phone number. In some cases, we might require additional verification documents which our team will inform you about during the registration process.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>I forgot my password. How can I reset it?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click on the "Forgot Password" link on the login page. Enter your registered phone number or email address, and we'll send you a verification code to reset your password.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-category">
+                <h2>Ordering & Delivery</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I place an order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Browse our products on the home page, add items to your cart, then proceed to checkout. You'll need to provide your delivery address and select a payment method. Once confirmed, your order will be processed and delivered to your doorstep.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What are your delivery areas?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We currently deliver across Bangalore city. Use our location page to check if we deliver to your area. We're continuously expanding our service areas, so check back regularly if we're not in your neighborhood yet.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does delivery take?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standard delivery takes 24-48 hours. For urgent requirements, we offer same-day delivery for orders placed before 12 PM, subject to availability in your area.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there a minimum order amount?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we have a minimum order value of ₹100 for delivery. This helps us maintain efficient delivery operations while keeping costs reasonable for our customers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-category">
+                <h2>Products & Quality</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do you ensure product quality?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We source all our products directly from government-approved suppliers and FCI warehouses. Each product undergoes quality checks before packaging and delivery. We maintain strict quality control standards to ensure you receive fresh, authentic ration products.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What if I receive damaged or expired products?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We have a 100% satisfaction guarantee. If you receive damaged, expired, or incorrect products, please contact our customer support within 24 hours of delivery. We'll arrange for a replacement or refund as per our return policy.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I check the product details before ordering?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, each product page includes detailed information about the product, including brand, weight, expiry date (where applicable), and nutritional information. You can also view customer reviews for most products.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-category">
+                <h2>Payments & Refunds</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept multiple payment methods including cash on delivery, UPI, credit/debit cards, net banking, and digital wallets. All online payments are secured with SSL encryption for your safety.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do refunds work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Refunds are processed according to our refund policy. For online payments, refunds are credited back to your original payment method within 5-7 business days. For cash payments, we process refunds via bank transfer or store credit.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>I was charged but my order didn't go through. What should I do?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>In rare cases, payment may be deducted but the order fails to process. Don't worry - the amount will be automatically refunded within 24 hours. If not, please contact our support team with your transaction details for immediate assistance.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-support">
+                <h3>Still have questions?</h3>
+                <p>Our customer support team is here to help you with any questions or concerns.</p>
+                <div class="btn-container">
+                    <a href="contact.html" class="btn">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Namma Ration</h3>
+                <p>Namma Ration is your trusted partner for quality ration products. We provide essential food items directly to your doorstep with convenience and reliability.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="location.html">Add Address</a></li>
+                    <li><a href="profile.html">My Account</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i>#8, Mysore Road, Bangalore City, Karnataka 560008</li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@nammaration.com">info@nammaration.com</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Information</a></li>
+                    <li><a href="returns.html">Returns & Refunds</a></li>
+                    <li><a href="tos.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Namma Ration. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        document.getElementById('faq-search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide categories based on visible items
+            document.querySelectorAll('.faq-category').forEach(category => {
+                const visibleItems = category.querySelectorAll('.faq-item[style="display: block"]');
+                if (visibleItems.length > 0) {
+                    category.style.display = 'block';
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+            
+            // Show no results message if no matches
+            if (visibleCount === 0 && searchTerm.length > 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+        
+        // Update cart count if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartCount = localStorage.getItem('cartCount') || 0;
+            if (cartCount > 0) {
+                document.getElementById('cart-count').textContent = cartCount;
+            }
+        });
+    </script>
+</body>
+</html>
