@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 2,
             name: "Basmati Rice",
             price: 30,
-            image: "https://tse1.mm.bing.net/th/id/OIP.jq7GRp6cLYbHxk9TY7KzqQHaF7?rs=1&pid=ImgDetMain&o=7&rm=3",
+            image: "https://media.istockphoto.com/id/519309790/photo/pile-of-raw-basmati-rice-with-a-spoon.jpg?s=612x612&w=0&k=20&c=A9A87HykypkOo5qLMQm6bZjBQn83NE1NHMppw8-6Tnc=",
             category: "rice",
             link: "product-basmati-rice.html"
         },
