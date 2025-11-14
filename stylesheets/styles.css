@@ -848,14 +848,16 @@ footer {
 .contact-info li {
     display: flex;
     align-items: flex-start;
-    gap: 0.8rem;
+    gap: 0.5rem;
     margin-bottom: 1rem;
     color: #ccc;
+    text-align: left;
 }
 
 .contact-info i {
     color: var(--secondary);
     margin-top: 0.2rem;
+    margin-left: 1.5rem;
 }
 
 .social-links {
