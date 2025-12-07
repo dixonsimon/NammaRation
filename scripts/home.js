@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 8,
             name: "Detergent Soap",
             price: 10,
-            image: "https://tse4.mm.bing.net/th/id/OIP.eKqg9wIdSkRcGedOcPAutgHaHI?w=720&h=693&rs=1&pid=ImgDetMain&o=7&rm=3",
+            image: "https://5.imimg.com/data5/JG/BE/PF/SELLER-3629920/detergent-soap.jpg",
             category: "soap",
             link: "product-detergent-soap.html"
         },
