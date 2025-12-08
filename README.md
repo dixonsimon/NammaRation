@@ -36,17 +36,16 @@ This project is built with modern frontend technologies to ensure a fast and rel
 
 ### Prototype
 
-* **Mobile Prototype:**
-<img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765207757/Screenshot_2025-12-08_205015_ij8gb6.png" height="450px" width="400px">
-
-* **Desktop Prototypes:**
-<img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765208329/WhatsApp_Image_2025-12-08_at_8.03.27_PM_gfjnpz.jpg" height="450px" width="650px">
-<img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765208325/WhatsApp_Image_2025-12-08_at_8.03.49_PM_xfm8rc.jpg" height="450px" width="650px">
-
-* **Desktop Prototype Stage 1:**
+* **Desktop Prototypes Stage 1:**
 <img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765208696/Stage_1_Login_xvk3qv.png" height="450px" width="650px">
 <img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765208694/Stage_1_Home_ygmosc.png" height="450px" width="650px">
 
+* **Desktop Prototypes Stage 2:**
+<img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765208329/WhatsApp_Image_2025-12-08_at_8.03.27_PM_gfjnpz.jpg" height="450px" width="650px">
+<img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765208325/WhatsApp_Image_2025-12-08_at_8.03.49_PM_xfm8rc.jpg" height="450px" width="650px">
+
+* **Mobile Prototype:**
+<img src="https://res.cloudinary.com/dccrbxfro/image/upload/v1765207757/Screenshot_2025-12-08_205015_ij8gb6.png" height="450px" width="400px">
 ---
 
 ## Getting Started
